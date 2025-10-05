@@ -77,7 +77,12 @@ namespace Lab01
             LoadGhe(GheB, "B");
             LoadGhe(GheC, "C");
             string[] ghe = { "A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4", "B5", "C1", "C2", "C3", "C4", "C5" };
-            int phong = int.Parse(PhongChieu.SelectedItem.ToString().Split(' ')[1]);
+            if (PhongChieu.SelectedItem == null) return;
+            string[] parts = PhongChieu.SelectedItem.ToString().Split(' ');
+            if (parts.Length < 2) return;
+            int phong = int.Parse(parts[1]);
+
+
 
 
         }
@@ -87,13 +92,24 @@ namespace Lab01
 
         }
 
+
         private void Phim_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             PhongChieu.Items.Clear();
+            PhongChieu.SelectedIndex = -1; 
+
+            GheA.Items.Clear();
+            GheB.Items.Clear();
+            GheC.Items.Clear();
+
             var phim = Phim.SelectedItem.ToString();
+
             foreach (var phong in dsPhim[phim].phongChieu)
                 PhongChieu.Items.Add($"Phòng {phong}");
         }
+
+        
 
         private void MuaVe_Click(object sender, EventArgs e)
         {

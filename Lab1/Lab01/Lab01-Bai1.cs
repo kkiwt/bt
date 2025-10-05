@@ -38,7 +38,7 @@ namespace Lab01
 
             int num1, num2;
             long sum = 0;
-            if (int.TryParse(textBox1.Text, out num1) == false || int.TryParse(textBox2.Text, out num2) == false)
+            if (int.TryParse(textBox1.Text.Trim(), out num1) == false || int.TryParse(textBox2.Text.Trim(), out num2) == false)
             {
                 MessageBox.Show("Vui lòng nhập lại số nguyên!");
                 return;

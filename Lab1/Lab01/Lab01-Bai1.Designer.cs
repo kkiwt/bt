@@ -119,6 +119,7 @@
             textBox3.Font = new Font("Segoe UI", 20F);
             textBox3.Location = new Point(138, 300);
             textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
             textBox3.Size = new Size(394, 61);
             textBox3.TabIndex = 9;
             textBox3.TextChanged += textBox3_TextChanged;

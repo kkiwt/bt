@@ -72,6 +72,7 @@
             // 
             textBox4.Location = new Point(217, 215);
             textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
             textBox4.Size = new Size(99, 31);
             textBox4.TabIndex = 3;
             textBox4.TextChanged += textBox4_TextChanged;
@@ -132,6 +133,7 @@
             // 
             textBox5.Location = new Point(608, 215);
             textBox5.Name = "textBox5";
+            textBox5.ReadOnly = true;
             textBox5.Size = new Size(99, 31);
             textBox5.TabIndex = 9;
             textBox5.TextChanged += textBox5_TextChanged;
