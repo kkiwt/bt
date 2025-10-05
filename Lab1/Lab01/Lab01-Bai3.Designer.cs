@@ -131,7 +131,7 @@
             Controls.Add(SoNguyenNhap);
             Controls.Add(label1);
             Name = "Bai3";
-            Text = "Form4";
+            Text = "Bai3";
             Load += Bai3_Load;
             ResumeLayout(false);
             PerformLayout();

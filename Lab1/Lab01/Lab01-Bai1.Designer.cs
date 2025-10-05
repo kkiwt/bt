@@ -149,7 +149,7 @@
             Controls.Add(textBox2);
             Controls.Add(label2);
             Name = "Bai1";
-            Text = "Form1";
+            Text = "Bai1";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

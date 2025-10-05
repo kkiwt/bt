@@ -195,7 +195,7 @@
             Controls.Add(textBox1);
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "Bai2";
-            Text = "Form3";
+            Text = "Bai2";
             Load += Form3_Load;
             ResumeLayout(false);
             PerformLayout();
