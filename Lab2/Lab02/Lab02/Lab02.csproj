@@ -52,8 +52,56 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lab2-Bai1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai1.Designer.cs">
+      <DependentUpon>Lab2-Bai1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab2-Bai3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai3.Designer.cs">
+      <DependentUpon>Lab2-Bai3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab2-Bai2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai2.Designer.cs">
+      <DependentUpon>Lab2-Bai2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab2-Bai4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai4.Designer.cs">
+      <DependentUpon>Lab2-Bai4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab2-Bai5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai5.Designer.cs">
+      <DependentUpon>Lab2-Bai5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab2-Bai6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai6.Designer.cs">
+      <DependentUpon>Lab2-Bai6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lab2-Bai7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lab2-Bai7.Designer.cs">
+      <DependentUpon>Lab2-Bai7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lab2-Bai1.resx">
+      <DependentUpon>Lab2-Bai1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

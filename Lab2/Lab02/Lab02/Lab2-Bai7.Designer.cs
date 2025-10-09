@@ -1,6 +1,6 @@
 ﻿namespace Lab02
 {
-    partial class Form1
+    partial class Lab2_Bai7
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Bai1 = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // Bai1
-            // 
-            this.Bai1.Location = new System.Drawing.Point(101, 103);
-            this.Bai1.Name = "Bai1";
-            this.Bai1.Size = new System.Drawing.Size(161, 74);
-            this.Bai1.TabIndex = 0;
-            this.Bai1.Text = "button1";
-            this.Bai1.UseVisualStyleBackColor = true;
-            this.Bai1.Click += new System.EventHandler(this.Bai1_Click);
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Bai1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.ResumeLayout(false);
-
+            this.Text = "Lab2_Bai7";
         }
 
         #endregion
-
-        private System.Windows.Forms.Button Bai1;
     }
 }
-
