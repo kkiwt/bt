@@ -117,5 +117,10 @@ namespace Lab01
             SoNguyenNhap.Clear();
             KetQua.Clear();
         }
+
+        private void Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -48,13 +48,7 @@ namespace Lab01
             return 0;
         }
 
-        // Lưu trạng thái ghế đã mua theo phòng
-        Dictionary<int, HashSet<string>> gheDaMua = new Dictionary<int, HashSet<string>>
-        {
-            { 1, new HashSet<string>() },
-            { 2, new HashSet<string>() },
-            { 3, new HashSet<string>() },
-        };
+
 
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -159,7 +153,7 @@ namespace Lab01
             foreach (var g in gheChon)
             {
                 tongTien += giaChuan * HeSoGia(g);
-                gheDaMua[phong].Add(g);
+
             }
 
 

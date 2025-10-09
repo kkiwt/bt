@@ -63,6 +63,7 @@
             Thoat.TabIndex = 11;
             Thoat.Text = "Thoát";
             Thoat.UseVisualStyleBackColor = true;
+            Thoat.Click += Thoat_Click;
             // 
             // Xoa
             // 
