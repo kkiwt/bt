@@ -26,6 +26,19 @@ namespace Lab02
             Bai1.ShowDialog();
 
         }
+
+        private void Bai2_Click(object sender, EventArgs e)
+        {
+            Lab2_Bai2 Bai2 = new Lab2_Bai2();
+
+            Bai2.ShowDialog();
+        }
+
+        private void Bai3_Click(object sender, EventArgs e)
+        {
+            Lab2_Bai3 Bai3 = new Lab2_Bai3();
+            Bai3.ShowDialog();
+        }
     }
 }
 

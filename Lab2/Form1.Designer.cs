@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.Bai1 = new System.Windows.Forms.Button();
+            this.Bai2 = new System.Windows.Forms.Button();
+            this.Bai3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Bai1
@@ -41,11 +43,33 @@
             this.Bai1.UseVisualStyleBackColor = true;
             this.Bai1.Click += new System.EventHandler(this.Bai1_Click);
             // 
+            // Bai2
+            // 
+            this.Bai2.Location = new System.Drawing.Point(101, 213);
+            this.Bai2.Name = "Bai2";
+            this.Bai2.Size = new System.Drawing.Size(161, 74);
+            this.Bai2.TabIndex = 1;
+            this.Bai2.Text = "2";
+            this.Bai2.UseVisualStyleBackColor = true;
+            this.Bai2.Click += new System.EventHandler(this.Bai2_Click);
+            // 
+            // Bai3
+            // 
+            this.Bai3.Location = new System.Drawing.Point(101, 316);
+            this.Bai3.Name = "Bai3";
+            this.Bai3.Size = new System.Drawing.Size(164, 63);
+            this.Bai3.TabIndex = 2;
+            this.Bai3.Text = "button1";
+            this.Bai3.UseVisualStyleBackColor = true;
+            this.Bai3.Click += new System.EventHandler(this.Bai3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Bai3);
+            this.Controls.Add(this.Bai2);
             this.Controls.Add(this.Bai1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +80,8 @@
         #endregion
 
         private System.Windows.Forms.Button Bai1;
+        private System.Windows.Forms.Button Bai2;
+        private System.Windows.Forms.Button Bai3;
     }
 }
 
