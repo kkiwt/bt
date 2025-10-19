@@ -28,94 +28,191 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BangNoiDung = new System.Windows.Forms.RichTextBox();
-            this.DocFile = new System.Windows.Forms.Button();
-            this.FileName = new System.Windows.Forms.TextBox();
-            this.Size = new System.Windows.Forms.TextBox();
-            this.CharacterCount = new System.Windows.Forms.TextBox();
-            this.URL = new System.Windows.Forms.TextBox();
-            this.WordsCount = new System.Windows.Forms.TextBox();
-            this.LineCount = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            BangNoiDung = new RichTextBox();
+            DocFile = new Button();
+            FileName = new TextBox();
+            Size = new TextBox();
+            CharacterCount = new TextBox();
+            URL = new TextBox();
+            WordsCount = new TextBox();
+            LineCount = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            Thoat = new Button();
+            SuspendLayout();
             // 
             // BangNoiDung
             // 
-            this.BangNoiDung.Location = new System.Drawing.Point(359, 12);
-            this.BangNoiDung.Name = "BangNoiDung";
-            this.BangNoiDung.Size = new System.Drawing.Size(429, 406);
-            this.BangNoiDung.TabIndex = 0;
-            this.BangNoiDung.Text = "";
-            this.BangNoiDung.TextChanged += new System.EventHandler(this.BangNoiDung_TextChanged);
+            BangNoiDung.Location = new Point(399, 15);
+            BangNoiDung.Margin = new Padding(3, 4, 3, 4);
+            BangNoiDung.Name = "BangNoiDung";
+            BangNoiDung.ReadOnly = true;
+            BangNoiDung.Size = new Size(707, 517);
+            BangNoiDung.TabIndex = 0;
+            BangNoiDung.Text = "";
+            BangNoiDung.TextChanged += BangNoiDung_TextChanged;
             // 
             // DocFile
             // 
-            this.DocFile.Location = new System.Drawing.Point(80, 12);
-            this.DocFile.Name = "DocFile";
-            this.DocFile.Size = new System.Drawing.Size(198, 60);
-            this.DocFile.TabIndex = 1;
-            this.DocFile.Text = "button1";
-            this.DocFile.UseVisualStyleBackColor = true;
-            this.DocFile.Click += new System.EventHandler(this.DocFile_Click);
+            DocFile.Location = new Point(89, 15);
+            DocFile.Margin = new Padding(3, 4, 3, 4);
+            DocFile.Name = "DocFile";
+            DocFile.Size = new Size(220, 75);
+            DocFile.TabIndex = 1;
+            DocFile.Text = "Đọc File";
+            DocFile.UseVisualStyleBackColor = true;
+            DocFile.Click += DocFile_Click;
             // 
             // FileName
             // 
-            this.FileName.Location = new System.Drawing.Point(80, 108);
-            this.FileName.Name = "FileName";
-            this.FileName.Size = new System.Drawing.Size(198, 26);
-            this.FileName.TabIndex = 2;
+            FileName.Location = new Point(89, 116);
+            FileName.Margin = new Padding(3, 4, 3, 4);
+            FileName.Name = "FileName";
+            FileName.ReadOnly = true;
+            FileName.Size = new Size(220, 31);
+            FileName.TabIndex = 2;
             // 
             // Size
             // 
-            this.Size.Location = new System.Drawing.Point(80, 157);
-            this.Size.Name = "Size";
-            this.Size.Size = new System.Drawing.Size(198, 26);
-            this.Size.TabIndex = 3;
+            Size.Location = new Point(118, 196);
+            Size.Margin = new Padding(3, 4, 3, 4);
+            Size.Name = "Size";
+            Size.ReadOnly = true;
+            Size.Size = new Size(191, 31);
+            Size.TabIndex = 3;
             // 
             // CharacterCount
             // 
-            this.CharacterCount.Location = new System.Drawing.Point(80, 412);
-            this.CharacterCount.Name = "CharacterCount";
-            this.CharacterCount.Size = new System.Drawing.Size(198, 26);
-            this.CharacterCount.TabIndex = 4;
+            CharacterCount.Location = new Point(118, 518);
+            CharacterCount.Margin = new Padding(3, 4, 3, 4);
+            CharacterCount.Name = "CharacterCount";
+            CharacterCount.ReadOnly = true;
+            CharacterCount.Size = new Size(220, 31);
+            CharacterCount.TabIndex = 4;
             // 
             // URL
             // 
-            this.URL.Location = new System.Drawing.Point(80, 228);
-            this.URL.Name = "URL";
-            this.URL.Size = new System.Drawing.Size(198, 26);
-            this.URL.TabIndex = 5;
+            URL.Location = new Point(89, 282);
+            URL.Margin = new Padding(3, 4, 3, 4);
+            URL.Name = "URL";
+            URL.ReadOnly = true;
+            URL.Size = new Size(275, 31);
+            URL.TabIndex = 5;
             // 
             // WordsCount
             // 
-            this.WordsCount.Location = new System.Drawing.Point(80, 362);
-            this.WordsCount.Name = "WordsCount";
-            this.WordsCount.Size = new System.Drawing.Size(198, 26);
-            this.WordsCount.TabIndex = 6;
+            WordsCount.Location = new Point(118, 450);
+            WordsCount.Margin = new Padding(3, 4, 3, 4);
+            WordsCount.Name = "WordsCount";
+            WordsCount.ReadOnly = true;
+            WordsCount.Size = new Size(220, 31);
+            WordsCount.TabIndex = 6;
             // 
             // LineCount
             // 
-            this.LineCount.Location = new System.Drawing.Point(80, 297);
-            this.LineCount.Name = "LineCount";
-            this.LineCount.Size = new System.Drawing.Size(198, 26);
-            this.LineCount.TabIndex = 7;
+            LineCount.Location = new Point(118, 371);
+            LineCount.Margin = new Padding(3, 4, 3, 4);
+            LineCount.Name = "LineCount";
+            LineCount.ReadOnly = true;
+            LineCount.Size = new Size(220, 31);
+            LineCount.TabIndex = 7;
+            LineCount.TextChanged += LineCount_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(10, 119);
+            label1.Name = "label1";
+            label1.Size = new Size(73, 25);
+            label1.TabIndex = 8;
+            label1.Text = "Tên File:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(10, 196);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 25);
+            label2.TabIndex = 9;
+            label2.Text = "Kích Thước:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(10, 285);
+            label3.Name = "label3";
+            label3.Size = new Size(47, 25);
+            label3.TabIndex = 10;
+            label3.Text = "URL:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 377);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 25);
+            label4.TabIndex = 11;
+            label4.Text = "Số Dòng:";
+            label4.Click += label4_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(12, 453);
+            label5.Name = "label5";
+            label5.Size = new Size(74, 25);
+            label5.TabIndex = 12;
+            label5.Text = "Số Chữ:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(12, 521);
+            label6.Name = "label6";
+            label6.Size = new Size(85, 25);
+            label6.TabIndex = 13;
+            label6.Text = "Số Ký Tự:";
+            // 
+            // Thoat
+            // 
+            Thoat.Location = new Point(701, 545);
+            Thoat.Name = "Thoat";
+            Thoat.Size = new Size(141, 36);
+            Thoat.TabIndex = 14;
+            Thoat.Text = "Thoát";
+            Thoat.UseVisualStyleBackColor = true;
+            Thoat.Click += Thoat_Click;
             // 
             // Lab2_Bai2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.LineCount);
-            this.Controls.Add(this.WordsCount);
-            this.Controls.Add(this.URL);
-            this.Controls.Add(this.CharacterCount);
-            this.Controls.Add(this.Size);
-            this.Controls.Add(this.FileName);
-            this.Controls.Add(this.DocFile);
-            this.Controls.Add(this.BangNoiDung);
-            this.Name = "Lab2_Bai2";
-            this.Text = "Lab2_Bai2";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(1118, 593);
+            Controls.Add(Thoat);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(LineCount);
+            Controls.Add(WordsCount);
+            Controls.Add(URL);
+            Controls.Add(CharacterCount);
+            Controls.Add(Size);
+            Controls.Add(FileName);
+            Controls.Add(DocFile);
+            Controls.Add(BangNoiDung);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Lab2_Bai2";
+            Text = "Lab2_Bai2";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -129,5 +226,12 @@
         private System.Windows.Forms.TextBox URL;
         private System.Windows.Forms.TextBox WordsCount;
         private System.Windows.Forms.TextBox LineCount;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Button Thoat;
     }
 }

@@ -18,7 +18,7 @@ namespace Lab02
             InitializeComponent();
         }
 
-        private int WordCount (String S)
+        private int WordCount(String S)
         {
             int count = 0;
             count = S.Split(new[] { ' ', '\t', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
@@ -35,8 +35,8 @@ namespace Lab02
             ChoChonFile.Filter = "Text file (*.txt)|*.txt";
 
             string name, url;
-   
-             int linecount = 0 , wordcount = 0, charcount = 0;
+
+            int linecount = 0, wordcount = 0, charcount = 0;
 
             if (ChoChonFile.ShowDialog() == DialogResult.OK)
             {
@@ -69,20 +69,35 @@ namespace Lab02
 
                     }
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     MessageBox.Show($"Lỗi Đọc File: {ex.Message}");
                 }
             }
-           
+
         }
 
-            
- 
+
+
 
         private void BangNoiDung_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void LineCount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

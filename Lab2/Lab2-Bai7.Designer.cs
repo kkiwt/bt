@@ -28,12 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Lab2_Bai7";
+            openFileDialog1 = new OpenFileDialog();
+            treeViewFolders = new TreeView();
+            panelContent = new Panel();
+            Thoat = new Button();
+            SuspendLayout();
+            // 
+            // treeViewFolders
+            // 
+            treeViewFolders.Location = new Point(0, 1);
+            treeViewFolders.Name = "treeViewFolders";
+            treeViewFolders.Size = new Size(525, 624);
+            treeViewFolders.TabIndex = 0;
+            treeViewFolders.AfterSelect += treeViewFolders_AfterSelect;
+            // 
+            // panelContent
+            // 
+            panelContent.Location = new Point(601, 0);
+            panelContent.Name = "panelContent";
+            panelContent.Size = new Size(733, 639);
+            panelContent.TabIndex = 1;
+            // 
+            // Thoat
+            // 
+            Thoat.Location = new Point(65, 639);
+            Thoat.Name = "Thoat";
+            Thoat.Size = new Size(141, 36);
+            Thoat.TabIndex = 13;
+            Thoat.Text = "Thoát";
+            Thoat.UseVisualStyleBackColor = true;
+            Thoat.Click += Thoat_Click;
+            // 
+            // Lab2_Bai7
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Info;
+            ClientSize = new Size(1331, 687);
+            Controls.Add(Thoat);
+            Controls.Add(panelContent);
+            Controls.Add(treeViewFolders);
+            Name = "Lab2_Bai7";
+            Text = "Lab2_Bai7";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private OpenFileDialog openFileDialog1;
+        private TreeView treeViewFolders;
+        private Panel panelContent;
+        private Button Thoat;
     }
 }

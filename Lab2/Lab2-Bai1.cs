@@ -27,13 +27,13 @@ namespace Lab02
         {
             try
             {
-                using (StreamReader reader = new StreamReader("input1_kkiwt.txt"))
+                using (StreamReader reader = new StreamReader("input1.txt"))
                 {
                     NoiDungFile.Text = reader.ReadToEnd();
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 MessageBox.Show($"Lỗi Đọc File: {ex.Message}");
             }
 
@@ -43,7 +43,7 @@ namespace Lab02
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("output1_kkiwt.txt"))
+                using (StreamWriter writer = new StreamWriter("output1.txt"))
                 {
                     writer.Write(NoiDungFile.Text);
                 }
@@ -54,6 +54,11 @@ namespace Lab02
                 MessageBox.Show($"Lỗi ghi file: {ex.Message}");
 
             }
+        }
+
+        private void Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

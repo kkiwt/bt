@@ -22,7 +22,7 @@ namespace Lab02
             BieuThuc = BieuThuc.Replace(" ", "");
 
             Stack<double> values = new Stack<double>();
-            Stack<char>  Dau = new Stack<char>();
+            Stack<char> Dau = new Stack<char>();
 
             for (int i = 0; i < BieuThuc.Length; i++)
             {
@@ -93,9 +93,9 @@ namespace Lab02
 
 
             try
-            {   
-                
-                using (StreamReader Stream = new StreamReader("input3_kkiwt.txt"))
+            {
+
+                using (StreamReader Stream = new StreamReader("input3.txt"))
                 {
                     BangNoiDung.Text = Stream.ReadToEnd();
 
@@ -113,10 +113,10 @@ namespace Lab02
         private void Ghi_Click(object sender, EventArgs e)
         {
             try
-            {   
+            {
 
 
-                using (StreamWriter Writer = new StreamWriter("output3_kkiwt.txt"))
+                using (StreamWriter Writer = new StreamWriter("output3.txt"))
                 {
                     string[] lines = BangNoiDung.Lines;
                     foreach (string line in lines)
@@ -160,6 +160,14 @@ namespace Lab02
 
         }
 
+        private void Lab2_Bai3_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
