@@ -63,14 +63,13 @@ namespace Lab02
             {
                 values.Push(ApDungPhepTinh(Dau.Pop(), values.Pop(), values.Pop()));
             }
-
             return values.Pop();
         }
 
         private int DoUuTien(char Dau)
         {
             if (Dau == '+' || Dau == '-') return 1;
-            if (Dau == '*' || Dau == '/') return 2;
+            if (Dau == '*' || Dau == '/' || Dau == 'x' || Dau == ':') return 2;
             return 0;
         }
 
@@ -144,7 +143,7 @@ namespace Lab02
             try
             {
 
-                using (StreamReader Stream = new StreamReader("output3_kkiwt.txt"))
+                using (StreamReader Stream = new StreamReader("output3.txt"))
                 {
                     BangNoiDung.Text = Stream.ReadToEnd();
 
@@ -168,6 +167,11 @@ namespace Lab02
         private void Thoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BangNoiDung_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

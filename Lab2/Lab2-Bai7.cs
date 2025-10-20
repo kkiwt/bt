@@ -15,10 +15,7 @@ namespace Lab02
         public Lab2_Bai7()
         {
             InitializeComponent();
-            // Trong InitializeComponent()
-            this.Load += new System.EventHandler(this.Lab2_Bai7_Load);
-
-            // Gắn sự kiện cho TreeView
+            this.Load += new System.EventHandler(this.Lab2_Bai7_Load); // load ra cái cây thư mục (gồm ổ đĩa C:\, D:\)
             this.treeViewFolders.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeViewFolders_BeforeExpand);
             this.treeViewFolders.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewFolders_AfterSelect);
         }
@@ -34,7 +31,7 @@ namespace Lab02
                 string path = currentFolderNode.Tag.ToString();
                 DirectoryInfo dir = new DirectoryInfo(path);
 
-                // Nạp các Thư mục con
+                // Nạp các Thư mục con khi ấn vào ổ đĩa
                 foreach (DirectoryInfo subDir in dir.GetDirectories())
                 {
                     // Bỏ qua thư mục hệ thống hoặc bị từ chối truy cập
@@ -67,28 +64,26 @@ namespace Lab02
 
         private void treeViewFolders_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            // 1. Dọn dẹp Panel và kiểm tra node
             panelContent.Controls.Clear();
             if (e.Node.Tag == null) return;
 
             string path = e.Node.Tag.ToString();
 
-            if (File.Exists(path)) // Nếu là FILE
+            if (File.Exists(path))
             {
                 string extension = Path.GetExtension(path).ToLower();
 
-                // Xử lý FILE HÌNH ẢNH (.jpg, .png, .bmp,...)
+                // Xử lý file hình ảnh (.jpg, .png, .bmp,...)
                 if (extension == ".jpg" || extension == ".png" || extension == ".bmp" || extension == ".gif")
                 {
                     try
                     {
-                        PictureBox pb = new PictureBox();
-                        // Dùng FileStream để tránh khóa file ảnh
+                        PictureBox pb = new PictureBox(); // Tạo ra PictureBox nếu chon ảnh
                         using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                         {
                             pb.Image = Image.FromStream(fs);
                         }
-                        pb.SizeMode = PictureBoxSizeMode.Zoom;
+                        pb.SizeMode = PictureBoxSizeMode.Zoom; 
                         pb.Dock = DockStyle.Fill;
                         panelContent.Controls.Add(pb);
                     }
@@ -97,12 +92,12 @@ namespace Lab02
                         DisplayMessage("Không thể tải hoặc hiển thị ảnh.", Color.Red);
                     }
                 }
-                // Xử lý FILE VĂN BẢN
-                else if (extension == ".txt" || extension == ".log" || extension == ".cs" || extension == ".html" || extension == ".xml")
+                // Xử lý file văn bản
+                else if (extension == ".txt" || extension == ".cs")
                 {
                     try
                     {
-                        RichTextBox rtb = new RichTextBox();
+                        RichTextBox rtb = new RichTextBox(); // tạo một RichTextBox mới khi chọn một file văn bản
                         rtb.ReadOnly = true;
                         rtb.Text = File.ReadAllText(path);
                         rtb.Dock = DockStyle.Fill;
@@ -120,13 +115,13 @@ namespace Lab02
                     DisplayMessage($"File '{Path.GetFileName(path)}' ({extension}) không hỗ trợ xem trước.", Color.Gray);
                 }
             }
-            else if (Directory.Exists(path)) // Nếu là THƯ MỤC
+            else if (Directory.Exists(path))
             {
                 DisplayMessage($"Đã chọn thư mục: {path}", Color.Black);
             }
         }
 
-        // Phương thức hỗ trợ hiển thị thông báo trong panel
+        // hiển thị thông báo trong panel
         private void DisplayMessage(string message, Color color)
         {
             Label lbl = new Label();

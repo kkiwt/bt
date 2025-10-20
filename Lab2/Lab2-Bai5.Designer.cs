@@ -36,7 +36,6 @@ namespace Lab02
             GheB = new CheckedListBox();
             GheC = new CheckedListBox();
             KetQua = new Label();
-            MuaVe = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -111,16 +110,6 @@ namespace Lab02
             KetQua.TabIndex = 6;
             KetQua.Text = "Kết Quả:";
             // 
-            // MuaVe
-            // 
-            MuaVe.Location = new Point(489, 445);
-            MuaVe.Name = "MuaVe";
-            MuaVe.Size = new Size(112, 34);
-            MuaVe.TabIndex = 7;
-            MuaVe.Text = "Tìm";
-            MuaVe.UseVisualStyleBackColor = true;
-            MuaVe.Click += MuaVe_Click;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -163,7 +152,7 @@ namespace Lab02
             // 
             // ThanhToan
             // 
-            ThanhToan.Location = new Point(484, 547);
+            ThanhToan.Location = new Point(494, 456);
             ThanhToan.Name = "ThanhToan";
             ThanhToan.Size = new Size(155, 58);
             ThanhToan.TabIndex = 13;
@@ -224,7 +213,6 @@ namespace Lab02
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(MuaVe);
             Controls.Add(KetQua);
             Controls.Add(GheC);
             Controls.Add(GheB);
@@ -249,7 +237,6 @@ namespace Lab02
         private CheckedListBox GheB;
         private CheckedListBox GheC;
         private Label KetQua;
-        private Button MuaVe;
         private Label label1;
         private Label label2;
         private Label label3;

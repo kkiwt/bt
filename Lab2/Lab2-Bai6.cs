@@ -17,25 +17,19 @@ namespace Lab2
             SetupListView();
         }
 
-        // Cấu hình ListView 
+
         private void SetupListView()
         {
-
-
             this.BangThucAnList.FullRowSelect = true;
             this.BangThucAnList.GridLines = true;
-
-
-            // Thiết lập PictureBox
             this.HinhAnhMonAn.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
-        // Phương thức tải dữ liệu từ DB vào ListView
+      
         private void LoadMonAnToListView()
         {
             BangThucAnList.Items.Clear();
-            // Lấy dữ liệu từ DataAccess
-            List<MonAn> monAns = DataAccess.LoadMonAn();
+            List<MonAn> monAns = DataAccess.LoadMonAn(); // Load món ăn từ database ở file DataAccess vào ListView
 
             foreach (var monAn in monAns)
             {
@@ -48,19 +42,14 @@ namespace Lab2
 
                 // Lưu đối tượng MonAn vào Tag để dễ dàng truy xuất ID khi Xóa
                 item.Tag = monAn;
-
                 BangThucAnList.Items.Add(item);
             }
         }
 
         private void Bai8_Load(object sender, EventArgs e)
         {
-            // 1. Khởi tạo Database (tạo bảng và chèn dữ liệu mẫu nếu chưa có)
             DataAccess.InitializeDatabase();
-            // 2. Tải dữ liệu vào ListView để hiển thị danh sách ban đầu
             LoadMonAnToListView();
-
-            // Đặt Label Người đóng góp về trạng thái ban đầu
             NguoiDongGop.Text = "Người đóng góp: [Chưa chọn]";
         }
 
@@ -68,20 +57,19 @@ namespace Lab2
         {
             this.Close();
         }
-        private string selectedImagePath = "default.jpg";
+        private string selectedImagePath = "default.jpg"; // nếu không được thêm hình từ trước thì dùng ảnh mặt định
 
         private void Xoa_Click(object sender, EventArgs e)
         {
             if (BangThucAnList.SelectedItems.Count > 0)
             {
-                // Lấy đối tượng MonAn từ Tag
                 var selectedMonAn = BangThucAnList.SelectedItems[0].Tag as MonAn;
 
                 if (selectedMonAn != null)
                 {
-                    DataAccess.DeleteMonAn(selectedMonAn.IDMA); // Xóa trong DB
+                    DataAccess.DeleteMonAn(selectedMonAn.IDMA); 
                     MessageBox.Show($"Đã xóa món ăn: {selectedMonAn.TenMonAn}", "Thông báo");
-                    LoadMonAnToListView(); // Cập nhật lại danh sách trên Form
+                    LoadMonAnToListView(); // Cập nhật lại danh sách sau khi xóa
                 }
             }
             else
@@ -94,7 +82,7 @@ namespace Lab2
         private void Them_Click(object sender, EventArgs e)
         {
             string MonAnMoi = MonAnVao.Text.Trim();
-            string NguoiDongGopMoi = TenNguoiDongGop.Text.Trim(); // Giả định có TextBox này
+            string NguoiDongGopMoi = TenNguoiDongGop.Text.Trim();
 
             if (string.IsNullOrEmpty(MonAnMoi))
             {
@@ -110,18 +98,15 @@ namespace Lab2
 
             try
             {
-                // 1. Tìm hoặc tạo ID Người đóng góp
+                // Tìm hoặc tạo ID Người đóng góp
                 int idNcc = DataAccess.GetOrCreateNguoiDungId(NguoiDongGopMoi);
 
-                // 2. Xử lý file ảnh
+                // Tìm đường dẫn file ảnh
                 string tenFileAnh = Path.GetFileName(selectedImagePath);
 
-                // Bạn cần sao chép ảnh vào thư mục chạy (bin/Debug) để DB có thể tham chiếu
-                // Nếu ảnh không phải là 'default.jpg' và tồn tại, thực hiện sao chép
-                if (selectedImagePath != "default.jpg" && File.Exists(selectedImagePath))
+                if (selectedImagePath != "default.jpg" && File.Exists(selectedImagePath)) // nếu file được chọn khác ảnh mặc định
                 {
-                    string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, tenFileAnh);
-                    // Dùng Try/Catch để tránh lỗi nếu file đang được sử dụng
+                    string targetPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, tenFileAnh); // tại file bin/debug, không chọn ảnh ở đây được. Nếu chọn ở đây ==> báo lỗi
                     try
                     {
                         File.Copy(selectedImagePath, targetPath, true);
@@ -129,20 +114,16 @@ namespace Lab2
                     catch (Exception fileEx)
                     {
                         MessageBox.Show($"Lỗi sao chép file ảnh: {fileEx.Message}", "Lỗi File");
-                        // Tiếp tục sử dụng tên file nhưng không đảm bảo ảnh đã có trong thư mục chạy
                     }
                 }
 
-                // 3. Thêm món ăn với tên file ảnh và IDNCC
-                DataAccess.AddMonAn(MonAnMoi, tenFileAnh, idNcc);
 
-                // Cập nhật giao diện và đặt lại trạng thái
+                DataAccess.AddMonAn(MonAnMoi, tenFileAnh, idNcc); // thêm món ăn
+
+
                 MonAnVao.Clear();
-                // TenNguoiDongGopVao.Clear(); // Tùy chọn: xóa tên người đóng góp
+                TenNguoiDongGop.Clear(); 
                 selectedImagePath = "default.jpg"; // Đặt lại về ảnh mặc định
-                                                   // Cập nhật PictureBox để hiển thị rằng ảnh đã được reset (nếu cần)
-                                                   // HinhAnhMonAn.Image = null; 
-
                 MonAnVao.Focus();
                 LoadMonAnToListView();
 
@@ -159,18 +140,13 @@ namespace Lab2
             HinhAnhMonAn.Image = null;
             NguoiDongGop.Text = "Người đóng góp: [Đang tìm...]";
 
-            // Lấy món ăn ngẫu nhiên từ DB
+            // Lấy món ăn ngẫu nhiên từ database
             var monAnNgauNhien = DataAccess.GetRandomMonAn();
 
             if (monAnNgauNhien != null)
             {
-                // 1. Hiển thị Tên Món Ăn
                 KetQua.Text = monAnNgauNhien.TenMonAn;
-
-
                 NguoiDongGop.Text = $"Người đóng góp: {monAnNgauNhien.TenNguoiDongGop}";
-
-                // 3. Hiển thị Hình Ảnh
                 string imagePath = monAnNgauNhien.HinhAnh;
                 if (File.Exists(imagePath))
                 {
@@ -207,7 +183,7 @@ namespace Lab2
         }
 
 
-        private void ThemAnh_Click(object sender, EventArgs e) // Không chèn ảnh từ thư mục bin
+        private void ThemAnh_Click(object sender, EventArgs e) // Không chọn ảnh từ thư mục bin
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 

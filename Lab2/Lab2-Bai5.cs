@@ -51,7 +51,7 @@ namespace Lab02
 
         string LoaiVe(string ghe)
         {
-            // Cắt bỏ phần " - Đã bán" nếu có
+
             ghe = ghe.Split('-')[0].Trim();
             string[] veVot = { "A1", "A5", "C1", "C5" };
             string[] veThuong = { "A2", "A3", "A4", "C2", "C3", "C4" };
@@ -72,7 +72,7 @@ namespace Lab02
             return 0;
         }
 
-        // --- HÀM LOADGHÉ ĐÃ SỬA LỖI LOGIC QUAN TRỌNG ---
+
         private void LoadGhe(CheckedListBox clb, string Row, int phong)
         {
             clb.Items.Clear();
@@ -162,6 +162,7 @@ namespace Lab02
             }
         }
 
+
         private void DocTrangThaiGhe()
         {
             if (!File.Exists(TrangThaiFile)) return;
@@ -195,7 +196,7 @@ namespace Lab02
             }
 
             // Cấu hình ProgressBar
-            // (Giữ nguyên phần này)
+
 
             var listThongKe = new List<ThongKePhim>();
 
@@ -228,7 +229,6 @@ namespace Lab02
                     DoanhThu = doanhThu
                 });
 
-                // (Giữ nguyên phần ProgressBar)
             }
 
             // Xếp hạng phim theo Doanh Thu
@@ -236,16 +236,16 @@ namespace Lab02
             for (int i = 0; i < sortedList.Count; i++)
                 sortedList[i].XepHang = i + 1;
 
-            // Xuất file JSON
+            // Xuất file json
             File.WriteAllText(filePath,
                 JsonSerializer.Serialize(sortedList, new JsonSerializerOptions { WriteIndented = true }),
                 Encoding.UTF8);
 
-            // (Giữ nguyên phần ProgressBar)
+
             MessageBox.Show($"Đã xuất thống kê ra file {filePath}");
         }
 
-        // --- Event Handlers ---
+
 
         private void Doc_Click(object sender, EventArgs e)
         {
@@ -268,11 +268,17 @@ namespace Lab02
 
         private async void ThongKe_Click(object sender, EventArgs e)
         {
-            // Cần có control progressBar1 trong Designer để hàm này chạy
-            // Nếu chưa có, bạn sẽ gặp lỗi biên dịch ở đây.
+
+
             if (this.Controls.Find("progressBar1", true).FirstOrDefault() is ProgressBar progressBar)
             {
                 progressBar.Visible = true;
+                // Hiệu ứng thanh chạy (giả lập đang ghi file)
+                for (int i = 0; i <= 100; i += 5)
+                {
+                    progressBar.Value = i;
+                    await Task.Delay(30); // mỗi bước chờ 30ms
+                }
             }
             await ThongKeVaXuatFile("output5.txt");
             if (this.Controls.Find("progressBar1", true).FirstOrDefault() is ProgressBar progressBar1)
@@ -299,7 +305,7 @@ namespace Lab02
                 PhongChieu.Items.Add($"Phòng {phong}");
         }
 
-        // --- HÀM SELECTINDEXCHANGED ĐÃ SỬA LỖI LOGIC GỌI LOADGHE ---
+
         private void PhongChieu_SelectedIndexChanged(object sender, EventArgs e)
         {
             GheA.Items.Clear();
@@ -317,11 +323,11 @@ namespace Lab02
             LoadGhe(GheB, "B", phong);
             LoadGhe(GheC, "C", phong);
         }
-        // ------------------------------------------------------------------
+
 
         private void MuaVe_Click(object sender, EventArgs e)
         {
-            // (Giữ nguyên logic của bạn, logic này đã đúng)
+
             if (Phim.SelectedItem == null || PhongChieu.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn phim và phòng chiếu!");
@@ -337,7 +343,7 @@ namespace Lab02
 
             string tenPhim = Phim.SelectedItem.ToString();
 
-            // Lấy số phòng an toàn
+            // Lấy số phòng
             string digits = new string(PhongChieu.SelectedItem.ToString().Where(char.IsDigit).ToArray());
             if (!int.TryParse(digits, out int phong)) return;
 
@@ -380,7 +386,7 @@ namespace Lab02
                 gheVuaMuaThanhCong.Add(g);
             }
 
-            // CẬP NHẬT TRẠNG THÁI GHẾ ĐÃ BÁN VÀO DỮ LIỆU CHÍNH
+            // Cập nhật ghế đã bán 
             foreach (var g in gheVuaMuaThanhCong)
             {
                 gheDaBan.Add(g);
@@ -389,7 +395,7 @@ namespace Lab02
             // Làm mới CheckedListBoxes để hiển thị ghế vừa mua là "Đã bán"
             PhongChieu_SelectedIndexChanged(null, null);
 
-            // Hiển thị kết quả
+
             KetQua.Text = $"Khách hàng: {tenKH}\n" +
                           $"Phim: {tenPhim}\n" +
                           $"Phòng chiếu: {phong}\n" +
@@ -398,6 +404,8 @@ namespace Lab02
 
             MessageBox.Show($"Mua vé thành công! Tổng tiền: {tongTien:N0} đ", "Thanh Toán");
             HoTen.Clear();
+            Ghi_Click(sender, e);
+
         }
 
         private void Bai4_Load(object sender, EventArgs e)
@@ -421,6 +429,11 @@ namespace Lab02
         }
 
         private void GheA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
         {
 
         }

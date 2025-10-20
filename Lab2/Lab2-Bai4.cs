@@ -185,9 +185,7 @@ namespace Lab02
             string mon1 = Diem1Ghi.Text;
             string mon2 = Diem2Ghi.Text;
             string mon3 = Diem3Ghi.Text;
-            float diem1 = float.Parse(mon1);
-            float diem2 = float.Parse(mon2);
-            float diem3 = float.Parse(mon3);
+
 
             string validationResult = ValidateSinhVienInput(hoTen, mssv, sdt, mon1, mon2, mon3);
 
@@ -221,7 +219,7 @@ namespace Lab02
         {
             if (DanhSachSinhVien.Count > 0)
             {
-                IndexHienTai = (IndexHienTai + 1) % DanhSachSinhVien.Count;
+                IndexHienTai = (IndexHienTai + 1) % DanhSachSinhVien.Count; // trang 1/5, 2/5, 3/5, 4/5 ,5/5 de tranh bi vuot tam
                 DisplaySinhVien(DanhSachSinhVien[IndexHienTai]);
                 UpdatePageInfo();
             }

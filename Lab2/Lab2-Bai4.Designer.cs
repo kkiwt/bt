@@ -68,6 +68,7 @@
             BangNoiDung.Location = new Point(358, 13);
             BangNoiDung.Margin = new Padding(3, 4, 3, 4);
             BangNoiDung.Name = "BangNoiDung";
+            BangNoiDung.ReadOnly = true;
             BangNoiDung.Size = new Size(454, 706);
             BangNoiDung.TabIndex = 1;
             BangNoiDung.Text = "";
@@ -79,7 +80,7 @@
             Ghi.Name = "Ghi";
             Ghi.Size = new Size(146, 49);
             Ghi.TabIndex = 2;
-            Ghi.Text = "Đọc Thông Tin";
+            Ghi.Text = "Ghi Thông Tin";
             Ghi.UseVisualStyleBackColor = true;
             Ghi.Click += Ghi_Click;
             // 
@@ -89,7 +90,7 @@
             Doc.Name = "Doc";
             Doc.Size = new Size(146, 49);
             Doc.TabIndex = 3;
-            Doc.Text = "GhiThôngTin";
+            Doc.Text = "Đọc Thông Tin";
             Doc.UseVisualStyleBackColor = true;
             Doc.Click += Doc_Click;
             // 
@@ -197,7 +198,7 @@
             Add.Name = "Add";
             Add.Size = new Size(146, 49);
             Add.TabIndex = 18;
-            Add.Text = "button1";
+            Add.Text = "Thêm";
             Add.UseVisualStyleBackColor = true;
             Add.Click += Add_Click;
             // 

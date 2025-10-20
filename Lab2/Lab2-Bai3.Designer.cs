@@ -39,9 +39,11 @@
             BangNoiDung.Location = new Point(311, 76);
             BangNoiDung.Margin = new Padding(3, 4, 3, 4);
             BangNoiDung.Name = "BangNoiDung";
+            BangNoiDung.ReadOnly = true;
             BangNoiDung.Size = new Size(498, 384);
             BangNoiDung.TabIndex = 1;
             BangNoiDung.Text = "";
+            BangNoiDung.TextChanged += BangNoiDung_TextChanged;
             // 
             // Doc
             // 

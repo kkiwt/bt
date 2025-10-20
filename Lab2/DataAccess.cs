@@ -16,7 +16,7 @@ namespace Lab2
         public string QuyenHan { get; set; }
     }
 
-    // Lớp cho Món Ăn
+
     public class MonAn
     {
         public int IDMA { get; set; }
@@ -38,7 +38,7 @@ namespace Lab2
                 connection.Open();
                 var command = connection.CreateCommand();
 
-                // 1. Tạo bảng NguoiDung
+                // Tạo bảng
                 command.CommandText = @"
                     CREATE TABLE IF NOT EXISTS NguoiDung (
                         IDNCC INTEGER PRIMARY KEY,
@@ -47,7 +47,7 @@ namespace Lab2
                     );";
                 command.ExecuteNonQuery();
 
-                // 2. Tạo bảng MonAn
+
                 command.CommandText = @"
                     CREATE TABLE IF NOT EXISTS MonAn (
                         IDMA INTEGER PRIMARY KEY,
@@ -58,7 +58,7 @@ namespace Lab2
                     );";
                 command.ExecuteNonQuery();
 
-                // 3. Chèn dữ liệu mẫu nếu database trống
+
                 InsertSampleData(connection);
             }
         }
@@ -122,7 +122,7 @@ namespace Lab2
             return MonAns;
         }
 
-        // Lấy một món ăn ngẫu nhiên
+       
         public static MonAn GetRandomMonAn()
         {
             MonAn monAn = null;
@@ -155,7 +155,7 @@ namespace Lab2
             return monAn;
         }
 
-        // Thêm món ăn mới vào DB
+        // Thêm món ăn
         public static void AddMonAn(string TenMonAn, string HinhAnh, int idNcc)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -172,14 +172,14 @@ namespace Lab2
                 command.ExecuteNonQuery();
             }
         }
-        // Trong DataAccess.cs
+
         public static int GetOrCreateNguoiDungId(string tenNguoi)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
 
-                // 1. Tìm kiếm người dùng hiện có
+                // Tìm kiếm người đóng góp nếu như người thêm món ăn là cùng 1 người
                 var findCmd = connection.CreateCommand();
                 findCmd.CommandText = "SELECT IDNCC FROM NguoiDung WHERE HoVaTen = @Ten";
                 findCmd.Parameters.AddWithValue("@Ten", tenNguoi);
@@ -190,7 +190,7 @@ namespace Lab2
                     return Convert.ToInt32(result); // Trả về ID nếu tìm thấy
                 }
 
-                // 2. Nếu không tìm thấy, thêm người dùng mới với quyền mặc định 'User'
+                // Nếu không tìm thấy, thêm người dùng mới
                 var insertCmd = connection.CreateCommand();
                 insertCmd.CommandText = @"
             INSERT INTO NguoiDung (HoVaTen, QuyenHan) 
@@ -203,7 +203,7 @@ namespace Lab2
             }
         }
 
-        // Xóa món ăn khỏi DB
+
         public static void DeleteMonAn(int idMa)
         {
             using (var connection = new SQLiteConnection(ConnectionString))

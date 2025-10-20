@@ -45,7 +45,7 @@ namespace Lab02
             {
                 using (StreamWriter writer = new StreamWriter("output1.txt"))
                 {
-                    writer.Write(NoiDungFile.Text);
+                    writer.Write(NoiDungFile.Text.ToUpper());
                 }
                 MessageBox.Show("Đã ghi file thành công!");
             }
