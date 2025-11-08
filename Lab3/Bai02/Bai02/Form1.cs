@@ -28,7 +28,7 @@ namespace Bai02
             Socket clientSocket;
             Socket listenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            IPEndPoint ipepServer = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9000);
+            IPEndPoint ipepServer = new IPEndPoint(IPAddress.Parse("10.0.212.241"), 8080);
 
             listenerSocket.Bind(ipepServer);
             listenerSocket.Listen(1);
