@@ -5,17 +5,17 @@ Lưu Ý Về Bài Lab 2: Cần giải nén file rar để đọc và ghi file
 
 - Bài Lab 3 được thực hiện bởi nhóm 4 lớp Thực Hành:
 
-+ Các Thành Viên của nhóm 4 lớp Thực Hành:
+Các Thành Viên của nhóm 4 lớp Thực Hành:
 
-Nguyễn Tuấn Kiệt - 24520907
++ Nguyễn Tuấn Kiệt - 24520907
 
-Hoàng Nhật Huy - 24520662
++ Hoàng Nhật Huy - 24520662
 
-Nguyễn Nhật Thanh - 24521633
++ Nguyễn Nhật Thanh - 24521633
 
-Nguyễn Hữu Chiến - 24520218
++ Nguyễn Hữu Chiến - 24520218
 
-Nguyễn Thái Hùng - 24520613
++ Nguyễn Thái Hùng - 24520613
 
 
 
