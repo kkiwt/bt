@@ -48,14 +48,11 @@ namespace Bai1
                 }
                 byte[] sendBytes = Encoding.UTF8.GetBytes(message);
 
-                // Sử dụng UdpClient để gửi dữ liệu
                 // using đảm bảo udpClient sẽ tự động đóng và giải phóng tài nguyên sau khi xong
                 using (UdpClient udpClient = new UdpClient())
                 {
                     // SendAsync gửi dữ liệu qua UDP một cách bất đồng bộ (asynchronous)
                     await udpClient.SendAsync(sendBytes, sendBytes.Length, serverIP, serverPort);
-
-                    // Khi gửi xong, chương trình sẽ tiếp tục chạy các dòng phía dưới await
 
                 }
 
@@ -68,12 +65,10 @@ namespace Bai1
             }
             catch (SocketException ex)
             {
-                // Xử lý lỗi khi không thể kết nối tới server (IP/Port sai hoặc server offline)
                 MessageBox.Show("Lỗi kết nối tới server: " + ex.Message);
             }
             catch (Exception ex)
             {
-                // Bắt tất cả các lỗi khác (ví dụ: lỗi mạng, lỗi hệ thống...)
                 MessageBox.Show("Lỗi khi gửi tin: " + ex.Message);
             }
         }
