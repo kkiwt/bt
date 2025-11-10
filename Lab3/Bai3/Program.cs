@@ -1,4 +1,6 @@
+using Bai3;
 namespace Bai1
+
 {
     internal static class Program
     {
