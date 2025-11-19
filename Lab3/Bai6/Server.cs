@@ -26,7 +26,7 @@ namespace ChatServer
         {
             try
             {
-                IPAddress ipAddr = IPAddress.Parse(txtIp.Text);
+
                 this.mainServer = new ChatServer(IPAddress.Any);
 
                 ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
@@ -134,5 +134,16 @@ namespace ChatServer
             base.OnFormClosing(e);
         }
 
+        private void NutTatListen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ChatServer.SendAdminMessage("Máy chủ đang tắt.");
+                ChatServer.Shutdown();
+                ChatServer.StatusChanged -= new StatusChangedEventHandler(mainServer_StatusChanged);
+                this.mainServer = null; // reset để có thể Start lại
+            }
+            catch { }
+        }
     }
 }

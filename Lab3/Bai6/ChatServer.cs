@@ -198,12 +198,13 @@ namespace ChatServer
         public void StartListening()
         {
             tlsClient = new TcpListener(IPAddress.Any, 2006);
+            tlsClient.Server.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             tlsClient.Start();
             ServRunning = true;
-
             thrListener = new Thread(KeepListening);
             thrListener.Start();
         }
+
 
         private void KeepListening()
         {
