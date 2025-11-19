@@ -197,7 +197,7 @@ namespace ChatServer
         // Bắt đầu lắng nghe
         public void StartListening()
         {
-            tlsClient = new TcpListener(ipAddress, 2006);
+            tlsClient = new TcpListener(IPAddress.Any, 2006);
             tlsClient.Start();
             ServRunning = true;
 

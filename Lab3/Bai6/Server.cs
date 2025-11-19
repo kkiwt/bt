@@ -27,7 +27,8 @@ namespace ChatServer
             try
             {
                 IPAddress ipAddr = IPAddress.Parse(txtIp.Text);
-                this.mainServer = new ChatServer(ipAddr);
+                this.mainServer = new ChatServer(IPAddress.Any);
+
                 ChatServer.StatusChanged += new StatusChangedEventHandler(mainServer_StatusChanged);
                 this.mainServer.StartListening();
                 UpdateStatus("Server đang theo dõi các kết nối...");
