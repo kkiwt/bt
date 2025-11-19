@@ -24,12 +24,12 @@ namespace Bai4
             InitializeComponent();
         }
 
-        // 🟢 Khi nhấn "Listen" để bật server
+        // Khi nhấn "Listen" để bật server
         private async void btnListen_Click(object sender, EventArgs e)
         {
             if (isListening)
             {
-                Log("⚠️ Server đã chạy rồi!");
+                Log("Server đã chạy rồi!");
                 return;
             }
 
@@ -39,18 +39,18 @@ namespace Bai4
             listener.Start();
             isListening = true;
 
-            Log("🚀 Server đang chạy trên cổng 8080...");
+            Log("Server đang chạy trên cổng 8080...");
 
             while (true)
             {
                 TcpClient client = await listener.AcceptTcpClientAsync();
                 connectedClients.Add(client);
-                Log($"🟢 Client {client.Client.RemoteEndPoint} đã kết nối");
+                Log($"Client {client.Client.RemoteEndPoint} đã kết nối");
                 _ = HandleClient(client);
             }
         }
 
-        // 🔁 Xử lý từng client
+        //Xử lý từng client
         private async Task HandleClient(TcpClient client)
         {
             using NetworkStream ns = client.GetStream();
@@ -74,10 +74,10 @@ namespace Bai4
                 await ns.WriteAsync(data, 0, data.Length);
             }
 
-            Log($"🔴 Client {client.Client.RemoteEndPoint} đã ngắt kết nối");
+            Log($"Client {client.Client.RemoteEndPoint} đã ngắt kết nối");
         }
 
-        // 🧮 Xử lý request JSON từ client
+        // Xử lý request JSON từ client
         private string ProcessRequest(string json, TcpClient client)
         {
             try
@@ -100,12 +100,12 @@ namespace Bai4
 
                     if (bookedSeats.Contains(key))
                     {
-                        Log($"❌ {client.Client.RemoteEndPoint} cố đặt ghế đã có: {key}");
+                        Log($"{client.Client.RemoteEndPoint} cố đặt ghế đã có: {key}");
                         return JsonConvert.SerializeObject(new { status = "failed", msg = "Ghế đã được đặt!" }, Formatting.Indented);
                     }
 
                     bookedSeats.Add(key);
-                    Log($"✅ {client.Client.RemoteEndPoint} đặt vé thành công: {key} | Tổng vé: {bookedSeats.Count}");
+                    Log($"{client.Client.RemoteEndPoint} đặt vé thành công: {key} | Tổng vé: {bookedSeats.Count}");
                     return JsonConvert.SerializeObject(new { status = "ok", msg = "Đặt vé thành công!" }, Formatting.Indented);
                 }
             }
@@ -117,14 +117,14 @@ namespace Bai4
             return JsonConvert.SerializeObject(new { status = "error", msg = "Lệnh không hợp lệ!" }, Formatting.Indented);
         }
 
-        // 📂 Đọc dữ liệu phim từ file input5.txt
+        // Đọc dữ liệu phim từ file input5.txt
         private void LoadFilmData(string path)
         {
             films.Clear();
 
             if (!File.Exists(path))
             {
-                Log($"❌ Không tìm thấy file {path}");
+                Log($"Không tìm thấy file {path}");
                 return;
             }
 
@@ -147,10 +147,10 @@ namespace Bai4
                 }
             }
 
-            Log($"📁 Đã tải {films.Count} phim từ file {path}");
+            Log($"Đã tải {films.Count} phim từ file {path}");
         }
 
-        // 🪵 Ghi log ra textbox
+        // Ghi log ra textbox
         private void Log(string message)
         {
             if (InvokeRequired)
@@ -162,12 +162,12 @@ namespace Bai4
             txtLog.AppendText($"[{DateTime.Now:HH:mm:ss}] {message}\r\n");
         }
 
-        // 🔴 Tắt server
+        // Tắt server
         private void button1_Click(object sender, EventArgs e)
         {
             if (!isListening)
             {
-                Log("⚠️ Server chưa chạy!");
+                Log("Server chưa chạy!");
                 return;
             }
 
@@ -180,11 +180,11 @@ namespace Bai4
             }
             connectedClients.Clear();
 
-            Log("🛑 Server đã tắt!");
+            Log("Server đã tắt!");
         }
     }
 
-    // 🎬 Thông tin phim
+    // Thông tin phim
     public class FilmInfo
     {
         public string Name { get; set; }
