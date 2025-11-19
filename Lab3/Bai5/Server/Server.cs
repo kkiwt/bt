@@ -117,7 +117,7 @@ namespace Server
             return result;
         }
     }
-    internal class Program
+    internal class Server
     {
         static TcpListener server;
         static string db = "Data Source=Food.db";

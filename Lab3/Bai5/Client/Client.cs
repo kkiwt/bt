@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class Form1 : Form
+    public partial class Client : Form
     {
         private SocketClient client = new SocketClient();
-        public Form1()
+        public Client()
         {
             InitializeComponent();
             SetupClient();
