@@ -131,11 +131,11 @@ namespace Bai4
                     sw.WriteLine($"Tổng số vé đã đặt: {stats.Values.Sum()}");
                 }
 
-                MessageBox.Show($"✅ Đã xuất thống kê ra file: {filePath}");
+                MessageBox.Show($"Đã xuất thống kê ra file: {filePath}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"❌ Lỗi khi ghi file: {ex.Message}");
+                MessageBox.Show($"Lỗi khi ghi file: {ex.Message}");
             }
         }
 

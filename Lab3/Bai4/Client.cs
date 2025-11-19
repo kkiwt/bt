@@ -25,7 +25,7 @@ namespace Bai4
             try
             {
                 netClient.Connect();
-                MessageBox.Show("✅ Đã kết nối tới Server!", "Thông báo");
+                MessageBox.Show("Đã kết nối tới Server!", "Thông báo");
                 LoadFilmDataFromServer();
                 LoadBookedSeatsFromServer();
                 syncTimer = new System.Windows.Forms.Timer();
@@ -35,7 +35,7 @@ namespace Bai4
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"❌ Không thể kết nối Server: {ex.Message}");
+                MessageBox.Show($"Không thể kết nối Server: {ex.Message}");
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace Bai4
             };
         }
 
-        // 🔸 Khi chọn phim → nạp danh sách rạp tương ứng
+        // Khi chọn phim → nạp danh sách rạp tương ứng
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
@@ -106,7 +106,7 @@ namespace Bai4
             }
         }
 
-        // 🔸 Khi chọn rạp → hiển thị ghế đã bị đặt (đồng bộ)
+        // Khi chọn rạp → hiển thị ghế đã bị đặt (đồng bộ)
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             resetCheckedListBox();
@@ -130,7 +130,7 @@ namespace Bai4
             }
         }
 
-        // 🔹 Nút "Thêm"
+        // Nút "Thêm"
         private void Them_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1)
@@ -173,7 +173,7 @@ namespace Bai4
             }
         }
 
-        // 🔹 Nút "Thanh Toán" — gửi yêu cầu đặt vé lên Server
+        // Nút "Thanh Toán" — gửi yêu cầu đặt vé lên Server
         private void ThanhToan_Click(object sender, EventArgs e)
         {
             if (choosingSeat.Count == 0)
@@ -244,7 +244,7 @@ namespace Bai4
             try
             {
                 netClient.Disconnect();
-                MessageBox.Show("🔌 Đã ngắt kết nối khỏi server!");
+                MessageBox.Show("Đã ngắt kết nối khỏi server!");
             }
             catch (Exception ex)
             {
