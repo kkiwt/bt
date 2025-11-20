@@ -67,7 +67,7 @@ namespace Server
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Lỗi, Không thể thêm món: {ex.Message}");
+                Console.WriteLine($"Lỗi, Khong The Them Mon: {ex.Message}");
                 return false;
             }
         }
@@ -112,7 +112,7 @@ namespace Server
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[DB ERROR] Ngẫu nhiên: {ex.Message}");
+                Console.WriteLine($"[DB ERROR] Ngau Nhien: {ex.Message}");
             }
             return result;
         }
@@ -203,12 +203,12 @@ namespace Server
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Lỗi xử lý Client: {ex.Message}");
+                Console.WriteLine($"Loi xu ly Client: {ex.Message}");
             }
             finally
             {
                 client.Close();
-                Console.WriteLine("Client đã ngắt kết nối.");
+                Console.WriteLine("Client đa ngat ket noi.");
             }
         }
 
@@ -217,7 +217,7 @@ namespace Server
             string[] path = request.Split('|');
             if (path.Length == 0)
             {
-                return "Yêu cầu không hợp lệ";
+                return "Yeu cau khong hop le";
             }
 
             string action = path[0].ToUpper();
@@ -229,7 +229,7 @@ namespace Server
                     case "THEM_MON":
                         if (path.Length < 6)
                         {
-                            return "Lỗi, vui lòng nhập đầy đủ thông tin";
+                            return "Loi, vui long nhap lai day du thong tin";
                         }
 
                         bool check = dbConnection.ThemMonAn(new MonAn
@@ -247,7 +247,7 @@ namespace Server
                     case "CHON_MON":
                         if (path.Length < 2)
                         {
-                            return "Lỗi, vui lòng chọn lại.";
+                            return "Vui Long Chon Lai.";
                         }
 
                         string type = path[1].ToUpper();
