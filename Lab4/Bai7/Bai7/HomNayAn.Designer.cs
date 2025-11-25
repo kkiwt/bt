@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            AnhThucAn = new PictureBox();
-            TenMonAn = new Label();
-            DiaChiLabel = new Label();
-            GiaLabel = new Label();
             NguoiDongGopLabel = new Label();
+            GiaLabel = new Label();
+            DiaChiLabel = new Label();
+            TenMonAn = new Label();
+            AnhThucAn = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AnhThucAn).BeginInit();
             SuspendLayout();
@@ -52,13 +52,33 @@
             panel1.Size = new Size(709, 254);
             panel1.TabIndex = 0;
             // 
-            // AnhThucAn
+            // NguoiDongGopLabel
             // 
-            AnhThucAn.Location = new Point(-1, 3);
-            AnhThucAn.Name = "AnhThucAn";
-            AnhThucAn.Size = new Size(220, 251);
-            AnhThucAn.TabIndex = 0;
-            AnhThucAn.TabStop = false;
+            NguoiDongGopLabel.AutoSize = true;
+            NguoiDongGopLabel.Location = new Point(257, 181);
+            NguoiDongGopLabel.Name = "NguoiDongGopLabel";
+            NguoiDongGopLabel.Size = new Size(59, 25);
+            NguoiDongGopLabel.TabIndex = 4;
+            NguoiDongGopLabel.Text = "label3";
+            NguoiDongGopLabel.Click += label3_Click;
+            // 
+            // GiaLabel
+            // 
+            GiaLabel.AutoSize = true;
+            GiaLabel.Location = new Point(257, 78);
+            GiaLabel.Name = "GiaLabel";
+            GiaLabel.Size = new Size(59, 25);
+            GiaLabel.TabIndex = 3;
+            GiaLabel.Text = "label2";
+            // 
+            // DiaChiLabel
+            // 
+            DiaChiLabel.AutoSize = true;
+            DiaChiLabel.Location = new Point(257, 129);
+            DiaChiLabel.Name = "DiaChiLabel";
+            DiaChiLabel.Size = new Size(59, 25);
+            DiaChiLabel.TabIndex = 2;
+            DiaChiLabel.Text = "label1";
             // 
             // TenMonAn
             // 
@@ -70,33 +90,13 @@
             TenMonAn.TabIndex = 1;
             TenMonAn.Text = "label1";
             // 
-            // DiaChiLabel
+            // AnhThucAn
             // 
-            DiaChiLabel.AutoSize = true;
-            DiaChiLabel.Location = new Point(257, 129);
-            DiaChiLabel.Name = "DiaChiLabel";
-            DiaChiLabel.Size = new Size(59, 25);
-            DiaChiLabel.TabIndex = 2;
-            DiaChiLabel.Text = "label1";
-            // 
-            // GiaLabel
-            // 
-            GiaLabel.AutoSize = true;
-            GiaLabel.Location = new Point(257, 78);
-            GiaLabel.Name = "GiaLabel";
-            GiaLabel.Size = new Size(59, 25);
-            GiaLabel.TabIndex = 3;
-            GiaLabel.Text = "label2";
-            // 
-            // NguoiDongGopLabel
-            // 
-            NguoiDongGopLabel.AutoSize = true;
-            NguoiDongGopLabel.Location = new Point(257, 181);
-            NguoiDongGopLabel.Name = "NguoiDongGopLabel";
-            NguoiDongGopLabel.Size = new Size(59, 25);
-            NguoiDongGopLabel.TabIndex = 4;
-            NguoiDongGopLabel.Text = "label3";
-            NguoiDongGopLabel.Click += label3_Click;
+            AnhThucAn.Location = new Point(-1, 3);
+            AnhThucAn.Name = "AnhThucAn";
+            AnhThucAn.Size = new Size(220, 251);
+            AnhThucAn.TabIndex = 0;
+            AnhThucAn.TabStop = false;
             // 
             // HomNayAn
             // 
@@ -105,7 +105,8 @@
             ClientSize = new Size(698, 248);
             Controls.Add(panel1);
             Name = "HomNayAn";
-            Text = "HomNayAn";
+
+            Load += HomNayAn_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AnhThucAn).EndInit();

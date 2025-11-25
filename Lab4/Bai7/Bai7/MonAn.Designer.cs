@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDelete = new Button();
             NguoiDongGopLabel = new Label();
             GiaLabel = new Label();
             DiaChiLabel = new Label();
             TenMonAn = new Label();
             AnhThucAn = new PictureBox();
-            btnDelete = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AnhThucAn).BeginInit();
             SuspendLayout();
@@ -51,8 +51,18 @@
             panel1.Controls.Add(AnhThucAn);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(646, 254);
+            panel1.Size = new Size(840, 254);
             panel1.TabIndex = 1;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(681, 45);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(103, 58);
+            btnDelete.TabIndex = 5;
+            btnDelete.Text = "Xóa";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // NguoiDongGopLabel
             // 
@@ -99,23 +109,13 @@
             AnhThucAn.TabIndex = 0;
             AnhThucAn.TabStop = false;
             // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(509, 45);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(103, 58);
-            btnDelete.TabIndex = 5;
-            btnDelete.Text = "Xóa";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
             // MonAn
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Name = "MonAn";
-            Size = new Size(646, 254);
+            Size = new Size(840, 254);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)AnhThucAn).EndInit();

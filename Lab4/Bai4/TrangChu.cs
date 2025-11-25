@@ -10,9 +10,9 @@ using static Bai4.Data;
 
 namespace Bai4
 {
-    public partial class Form1 : Form
+    public partial class TrangChu : Form
     {
-        public Form1()
+        public TrangChu()
         {
             InitializeComponent();
         }
@@ -23,9 +23,9 @@ namespace Bai4
                 System.Reflection.BindingFlags.SetProperty |
                 System.Reflection.BindingFlags.Instance |
                 System.Reflection.BindingFlags.NonPublic,
-                null, flowLayoutPanel1, new object[] { true });
+                null, DanhSachPhim, new object[] { true });
 
-            this.Controls.Add(flowLayoutPanel1);
+            this.Controls.Add(DanhSachPhim);
         }
 
 
@@ -39,7 +39,7 @@ namespace Bai4
 
         private async Task DisplayFilmsDynamic(Dictionary<string, FilmInfo> filmData)
         {
-            flowLayoutPanel1.Controls.Clear();
+            DanhSachPhim.Controls.Clear();
 
             using (HttpClient client = new HttpClient())
             {
@@ -118,7 +118,7 @@ namespace Bai4
                     card.Controls.Add(lbl);
                     card.Controls.Add(btnUrl);
 
-                    flowLayoutPanel1.Controls.Add(card);
+                    DanhSachPhim.Controls.Add(card);
                 }
             }
         }
@@ -134,9 +134,9 @@ namespace Bai4
 
             MessageBox.Show(info, "Thông tin phim");
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void DatVe_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            FormDatVe form2 = new FormDatVe();
             form2.Show();
             this.Hide();
         }

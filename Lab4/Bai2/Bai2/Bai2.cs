@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bai2
 {
-    public partial class Form1 : Form
+    public partial class Bai2 : Form
     {
-        public Form1()
+        public Bai2()
         {
             InitializeComponent();
         }
@@ -20,6 +20,7 @@ namespace Bai2
 
         private void btnDownLoad_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             string url = txtURL.Text.Trim();
 
             string FilePath = txtSaveFile.Text.Trim();
@@ -96,10 +97,11 @@ namespace Bai2
 
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK);
             }
+            Cursor = Cursors.Default;  
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SaveFile_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 

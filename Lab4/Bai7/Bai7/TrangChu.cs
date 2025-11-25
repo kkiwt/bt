@@ -12,7 +12,6 @@ using Microsoft.VisualBasic.Logging;
 
 namespace Bai7
 {
-    
     public partial class TrangChu : Form
     {
         private TokenInfo tokenInfo;
@@ -33,6 +32,7 @@ namespace Bai7
 
 
         }
+        private List<dynamic> myMonAnList = new List<dynamic>();
 
 
 
@@ -45,6 +45,12 @@ namespace Bai7
 
             PageCombo.SelectedIndex = 0;
             PageSizeCombo.SelectedIndex = 0;
+
+
+            progressBar1.Style = ProgressBarStyle.Blocks; // Hiển thị dạng phần trăm
+            progressBar1.Visible = false; // Ẩn mặc định
+
+
 
             await LoadMonAnAsync(false); // Load All
             await LoadMonAnAsync(true);  // Load Tôi Đóng Góp
@@ -109,68 +115,100 @@ namespace Bai7
 
 
 
+
+
         public async Task LoadMonAnAsync(bool isMyDishes = false)
         {
-            int currentPage = PageCombo.SelectedItem != null ? int.Parse(PageCombo.SelectedItem.ToString()) : 1;
-            int pageSize = PageSizeCombo.SelectedItem != null ? int.Parse(PageSizeCombo.SelectedItem.ToString()) : 5;
+            progressBar1.Visible = true;
+            progressBar1.Style = ProgressBarStyle.Blocks;
+            progressBar1.Value = 0;
 
-            var url = isMyDishes ?
-                "https://nt106.uitiot.vn/api/v1/monan/my-dishes" :
-                "https://nt106.uitiot.vn/api/v1/monan/all";
-
-            using (var client = new HttpClient())
+            try
             {
-                client.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue(tokenInfo.TokenType, tokenInfo.AccessToken);
+                int currentPage = PageCombo.SelectedItem != null ? int.Parse(PageCombo.SelectedItem.ToString()) : 1;
+                int pageSize = PageSizeCombo.SelectedItem != null ? int.Parse(PageSizeCombo.SelectedItem.ToString()) : 5;
 
-                var body = new { current = currentPage, pageSize = pageSize };
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(body);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var url = isMyDishes ?
+                    "https://nt106.uitiot.vn/api/v1/monan/my-dishes" :
+                    "https://nt106.uitiot.vn/api/v1/monan/all";
 
-                var response = await client.PostAsync(url, content);
-                var result = await response.Content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    MessageBox.Show($"Lỗi: {result}");
-                    return;
-                }
+                    client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue(tokenInfo.TokenType, tokenInfo.AccessToken);
 
-                dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(result);
-                var listMonAn = data.data;
+                    var body = new { current = currentPage, pageSize = pageSize };
+                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(body);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                FlowLayoutPanel panel = isMyDishes ? flowPanelMine : flowPanelAll;
-                panel.Controls.Clear();
+                    var response = await client.PostAsync(url, content);
+                    var result = await response.Content.ReadAsStringAsync();
 
-                if (listMonAn == null || listMonAn.Count == 0)
-                {
-                    panel.Controls.Add(new Label { Text = "Không có món ăn nào!", AutoSize = true });
-                    return;
-                }
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Lỗi: {result}");
+                        return;
+                    }
 
-                if (!isMyDishes)
-                {
-                    allMonAnList = ((IEnumerable<dynamic>)listMonAn).ToList();
-                }
+                    dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(result);
+                    var listMonAn = data.data;
 
-                foreach (var item in listMonAn)
-                {
-                    MonAn monAnControl = new MonAn();
+                    FlowLayoutPanel panel = isMyDishes ? flowPanelMine : flowPanelAll;
+                    panel.Controls.Clear();
 
-                    monAnControl.SetData(
-                        (int)item.id,
-                        (string)item.ten_mon_an,
-                        item.gia.ToString(),
-                        (string)item.dia_chi,
-                        (string)item.nguoi_dong_gop,
-                        (string)item.hinh_anh,
-                        isMyDishes // true nếu tab "Tôi Đóng Góp", false nếu tab "All"
-                    );
+                    if (listMonAn == null || listMonAn.Count == 0)
+                    {
+                        panel.Controls.Add(new Label { Text = "Không có món ăn nào!", AutoSize = true });
+                        return;
+                    }
 
-                    panel.Controls.Add(monAnControl);
+
+                    if (isMyDishes)
+                    {
+                        myMonAnList = ((IEnumerable<dynamic>)listMonAn).ToList();
+                    }
+                    else
+                    {
+                        allMonAnList = ((IEnumerable<dynamic>)listMonAn).ToList();
+                    }
+
+
+
+                    // Sau khi lấy listMonAn từ API
+                    var limitedList = ((IEnumerable<dynamic>)listMonAn).Take(pageSize).ToList();
+
+                    // Dùng limitedList thay vì listMonAn
+                    progressBar1.Maximum = limitedList.Count;
+                    int count = 0;
+                    foreach (var item in limitedList)
+                    {
+                        MonAn monAnControl = new MonAn();
+                        monAnControl.SetData(
+                            (int)item.id,
+                            (string)item.ten_mon_an,
+                            item.gia.ToString(),
+                            (string)item.dia_chi,
+                            (string)item.nguoi_dong_gop,
+                            (string)item.hinh_anh,
+                            isMyDishes
+                        );
+                        panel.Controls.Add(monAnControl);
+
+                        count++;
+                        progressBar1.Value = count;
+                        await Task.Delay(50);
+                    }
+
+
                 }
             }
+            finally
+            {
+                progressBar1.Visible = false; // Ẩn khi hoàn tất
+            }
         }
+
+
 
         public void AddMonAnToMine(MonAn monAnControl)
         {
@@ -195,32 +233,60 @@ namespace Bai7
         }
 
 
+
         private void HomNayAn_Click(object sender, EventArgs e)
         {
-            if (allMonAnList == null || allMonAnList.Count == 0)
+            Cursor = Cursors.WaitCursor;
+            if (tabControl2.SelectedTab == AllTabPage)
             {
-                MessageBox.Show("Danh sách món ăn trống! Vui lòng load tab All trước.");
-                return;
+                if (allMonAnList == null || allMonAnList.Count == 0)
+                {
+                    MessageBox.Show("Danh sách món ăn trống! Vui lòng load tab All trước.");
+                    return;
+                }
+
+                Random rnd = new Random();
+                var randomMon = allMonAnList[rnd.Next(allMonAnList.Count)];
+
+                ShowRandomMon(randomMon);
             }
+            else if (tabControl2.SelectedTab == ToiDongGopTabPage)
+            {
+                if (myMonAnList == null || myMonAnList.Count == 0)
+                {
+                    MessageBox.Show("Bạn chưa có món ăn nào trong danh sách đóng góp!");
+                    return;
+                }
 
-            Random rnd = new Random();
-            var randomMon = allMonAnList[rnd.Next(allMonAnList.Count)];
+                Random rnd = new Random();
+                var randomMon = myMonAnList[rnd.Next(myMonAnList.Count)];
 
-            // Lấy thông tin món ăn
-            string tenMon = randomMon.ten_mon_an;
-            string gia = randomMon.gia.ToString();
-            string diaChi = randomMon.dia_chi;
-            string nguoiDongGop = randomMon.nguoi_dong_gop;
-            string hinhAnh = randomMon.hinh_anh;
+                ShowRandomMon(randomMon);
+            }
+            Cursor = Cursors.Default;
+        }
 
-            // Truyền vào form HomNayAn
+        private void ShowRandomMon(dynamic mon)
+        {
+            string tenMon = mon.ten_mon_an;
+            string gia = mon.gia.ToString();
+            string diaChi = mon.dia_chi;
+            string nguoiDongGop = mon.nguoi_dong_gop;
+            string hinhAnh = mon.hinh_anh;
+
             HomNayAn homNayAnForm = new HomNayAn(tenMon, gia, diaChi, nguoiDongGop, hinhAnh);
             homNayAnForm.Show();
         }
 
+        private void NutLogOut_MouseEnter(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
 
-
-
+        private void NutLogOut_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
     }
 
 }

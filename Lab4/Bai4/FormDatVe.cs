@@ -7,49 +7,49 @@ using System.Windows.Forms;
 
 namespace Bai4
 {
-    public partial class Form2 : Form
+    public partial class FormDatVe : Form
     {
-        public Form2()
+        public FormDatVe()
         {
             InitializeComponent();
 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            DanhSachPhimCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            RapCombo.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            DanhSachPhimCombo.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            RapCombo.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
         }
 
         private async void Form2_Load(object sender, EventArgs e)
         {
             await Data.LoadFilmData();
 
-            comboBox1.Items.Clear();
+            DanhSachPhimCombo.Items.Clear();
             foreach (var film in Data.filmData.Keys)
-                comboBox1.Items.Add(film);
+                DanhSachPhimCombo.Items.Add(film);
 
-            comboBox1.SelectedIndex = -1;
-            comboBox2.SelectedIndex = -1;
-            richTextBox1.ReadOnly = true;
+            DanhSachPhimCombo.SelectedIndex = -1;
+            RapCombo.SelectedIndex = -1;
+            NoiDungThanhToan.ReadOnly = true;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox2.Items.Clear();
-            if (comboBox1.SelectedItem == null) return;
+            RapCombo.Items.Clear();
+            if (DanhSachPhimCombo.SelectedItem == null) return;
 
-            string film = comboBox1.SelectedItem.ToString();
+            string film = DanhSachPhimCombo.SelectedItem.ToString();
 
             if (Data.filmData.ContainsKey(film))
-                comboBox2.Items.AddRange(Data.filmData[film].Theaters.ToArray());
+                RapCombo.Items.AddRange(Data.filmData[film].Theaters.ToArray());
 
             ResetSeatColors();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string film = comboBox1.SelectedItem?.ToString();
-            string theater = comboBox2.SelectedItem?.ToString();
+            string film = DanhSachPhimCombo.SelectedItem?.ToString();
+            string theater = RapCombo.SelectedItem?.ToString();
 
             ResetSeatColors();
 
@@ -59,7 +59,7 @@ namespace Bai4
 
         void ResetSeatColors()
         {
-            foreach (Control ctrl in panel1.Controls)
+            foreach (Control ctrl in NoiChuaGhe.Controls)
                 if (ctrl is Button btn)
                     btn.BackColor = Color.White;
         }
@@ -71,7 +71,7 @@ namespace Bai4
 
             var used = Data.bookedSeats[film][theater];
 
-            foreach (Control ctrl in panel1.Controls)
+            foreach (Control ctrl in NoiChuaGhe.Controls)
             {
                 if (ctrl is Button btn)
                 {
@@ -86,8 +86,8 @@ namespace Bai4
             Button btn = sender as Button;
             string seat = btn.Text;
 
-            string film = comboBox1.SelectedItem?.ToString();
-            string theater = comboBox2.SelectedItem?.ToString();
+            string film = DanhSachPhimCombo.SelectedItem?.ToString();
+            string theater = RapCombo.SelectedItem?.ToString();
 
             if (film == null || theater == null) return;
 
@@ -106,12 +106,12 @@ namespace Bai4
             {
                 Data.choosingSeat.RemoveAt(index);
                 btn.BackColor = Color.White;
-                var lines = richTextBox1.Lines.ToList();
+                var lines = NoiDungThanhToan.Lines.ToList();
                 int lineToRemove = lines.FindIndex(line => line.StartsWith(searchString));
                 if (lineToRemove >= 0)
                 {
                     lines.RemoveAt(lineToRemove);
-                    richTextBox1.Lines = lines.ToArray(); 
+                    NoiDungThanhToan.Lines = lines.ToArray(); 
                 }
             }
             else
@@ -120,18 +120,18 @@ namespace Bai4
                 var filmInfo = Data.filmData[film];
                 btn.BackColor = Color.Green;
                 decimal price = Data.CalculatePrice(filmInfo.BasePrice, seat);
-                richTextBox1.AppendText($"{searchString} | Giá: {price} \n");
+                NoiDungThanhToan.AppendText($"{searchString} | Giá: {price} \n");
             }
         }
 
-        private void button16_Click(object sender, EventArgs e)
+        private void NutThanhToan_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(TenText.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên người đặt vé!", "Lỗi");
                 return;
             }
-            if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1)
+            if (DanhSachPhimCombo.SelectedIndex == -1 || RapCombo.SelectedIndex == -1)
             {
                 MessageBox.Show("Vui lòng chọn phim và rạp trước khi đặt!");
                 return;
@@ -153,12 +153,12 @@ namespace Bai4
                 totalPrice += Data.CalculatePrice(filmInfo.BasePrice,seat.Seat);
             }
             Data.choosingSeat.Clear();
-            MessageBox.Show($"{textBox1.Text} đã đặt vé thành công!\nTổng tiền: {totalPrice}đ","Thông báo");
+            MessageBox.Show($"{TenText.Text} đã đặt vé thành công!\nTổng tiền: {totalPrice}đ","Thông báo");
 
             ResetSeatColors();
-            InitSeatColors(comboBox1.SelectedItem.ToString(), comboBox2.SelectedItem.ToString());
-            richTextBox1.Clear();
-            textBox1.Clear();
+            InitSeatColors(DanhSachPhimCombo.SelectedItem.ToString(), RapCombo.SelectedItem.ToString());
+            NoiDungThanhToan.Clear();
+            TenText.Clear();
         }
     }
 }

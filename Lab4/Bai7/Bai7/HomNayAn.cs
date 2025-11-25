@@ -24,6 +24,8 @@ namespace Bai7
             GiaLabel.Text = $"Giá: {gia} VND";
             DiaChiLabel.Text = $"Địa chỉ: {diaChi}";
             NguoiDongGopLabel.Text = $"Người đóng góp: {nguoiDongGop}";
+            Text = "Hôm Nay Ăn " + TenMonAn.Text;
+
 
             try
             {
@@ -38,6 +40,11 @@ namespace Bai7
 
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HomNayAn_Load(object sender, EventArgs e)
         {
 
         }

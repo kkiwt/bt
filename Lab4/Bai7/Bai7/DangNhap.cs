@@ -26,6 +26,7 @@ namespace Bai7
 
         private async void NutDangNhap_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             string username = TaiKhoanText.Text.Trim();
             string password = MatKhauText.Text.Trim();
 
@@ -69,7 +70,7 @@ namespace Bai7
                         AccessToken = accessToken,
                         RefreshToken = refreshToken
                     };
-                    MessageBox.Show("Đăng Nhập Thàn Công");
+
                     // Mở form chính và truyền tokenInfo
                     TrangChu mainForm = new TrangChu(tokenInfo, username);
                     mainForm.Show();
@@ -80,6 +81,7 @@ namespace Bai7
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
+            Cursor = Cursors.Default;
         }
 
 
@@ -100,9 +102,21 @@ namespace Bai7
 
         private void DangKyLabel_Click(object sender, EventArgs e)
         {
-           DangKy dkForm = new DangKy();
-           dkForm.Show();
-           this.Hide();
+            Cursor = Cursors.WaitCursor;
+            DangKy dkForm = new DangKy();
+            dkForm.Show();
+            this.Hide();
+
+        }
+
+        private void DangKyLabel_MouseEnter(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void DangKyLabel_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
 
         }
     }

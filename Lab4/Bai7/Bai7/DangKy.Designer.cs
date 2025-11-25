@@ -63,6 +63,7 @@
             MatKhauText.Font = new Font("Segoe UI", 10F);
             MatKhauText.Location = new Point(184, 99);
             MatKhauText.Name = "MatKhauText";
+            MatKhauText.PasswordChar = '*';
             MatKhauText.Size = new Size(461, 34);
             MatKhauText.TabIndex = 1;
             // 
@@ -200,7 +201,7 @@
             // LanguageCombo
             // 
             LanguageCombo.FormattingEnabled = true;
-            LanguageCombo.Items.AddRange(new object[] { "English", "", "Vietnamese", "", "French", "", "Spanish", "", "German", "", "Italian", "", "Portuguese", "", "Russian", "", "Chinese", "", "Japanese", "", "Korean", "", "Arabic", "", "Hindi", "", "Thai", "", "Indonesian", "", "Malay", "", "Turkish", "", "Dutch", "", "Greek", "", "Polish", "", "Swedish", "", "Norwegian", "", "Danish", "", "Finnish", "", "Hebrew" });
+            LanguageCombo.Items.AddRange(new object[] { "English", "Vietnamese", "French", "Spanish", "German", "Italian", "Portuguese", "Russian", "Chinese", "Japanese", "Korean", "Arabic", "Hindi", "Thai", "Indonesian", "Malay", "Turkish", "Dutch", "Greek", "Polish", "Swedish", "Norwegian", "Danish", "Finnish", "Hebrew" });
             LanguageCombo.Location = new Point(184, 320);
             LanguageCombo.Name = "LanguageCombo";
             LanguageCombo.Size = new Size(463, 33);
@@ -332,7 +333,7 @@
             Controls.Add(label1);
             Controls.Add(panel1);
             Name = "DangKy";
-            Text = "Form1";
+            Text = "Đăng Ký";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

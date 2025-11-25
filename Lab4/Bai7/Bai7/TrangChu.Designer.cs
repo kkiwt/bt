@@ -36,7 +36,7 @@
             WelcomeText = new Label();
             label1 = new Label();
             HomNayAn = new Button();
-            button2 = new Button();
+            NutThemMonAn = new Button();
             progressBar1 = new ProgressBar();
             NutLogOut = new Label();
             label2 = new Label();
@@ -104,7 +104,7 @@
             // WelcomeText
             // 
             WelcomeText.AutoSize = true;
-            WelcomeText.Location = new Point(26, 695);
+            WelcomeText.Location = new Point(9, 695);
             WelcomeText.Name = "WelcomeText";
             WelcomeText.Size = new Size(85, 25);
             WelcomeText.TabIndex = 3;
@@ -114,32 +114,35 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(109, 27);
+            label1.Font = new Font("Segoe UI Black", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Teal;
+            label1.Location = new Point(26, 27);
             label1.Name = "label1";
-            label1.Size = new Size(231, 38);
+            label1.Size = new Size(392, 65);
             label1.TabIndex = 4;
             label1.Text = "Hôm Nay Ăn Gì";
             // 
             // HomNayAn
             // 
+            HomNayAn.BackColor = Color.PapayaWhip;
             HomNayAn.Location = new Point(431, 27);
             HomNayAn.Name = "HomNayAn";
             HomNayAn.Size = new Size(178, 59);
             HomNayAn.TabIndex = 5;
             HomNayAn.Text = "Hôm Nay Ăn";
-            HomNayAn.UseVisualStyleBackColor = true;
+            HomNayAn.UseVisualStyleBackColor = false;
             HomNayAn.Click += HomNayAn_Click;
             // 
-            // button2
+            // NutThemMonAn
             // 
-            button2.Location = new Point(650, 27);
-            button2.Name = "button2";
-            button2.Size = new Size(178, 59);
-            button2.TabIndex = 6;
-            button2.Text = "Thêm Món Ăn";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += NutThemMonAn_Click;
+            NutThemMonAn.BackColor = SystemColors.Info;
+            NutThemMonAn.Location = new Point(650, 27);
+            NutThemMonAn.Name = "NutThemMonAn";
+            NutThemMonAn.Size = new Size(178, 59);
+            NutThemMonAn.TabIndex = 6;
+            NutThemMonAn.Text = "Thêm Món Ăn";
+            NutThemMonAn.UseVisualStyleBackColor = false;
+            NutThemMonAn.Click += NutThemMonAn_Click;
             // 
             // progressBar1
             // 
@@ -152,12 +155,14 @@
             // 
             NutLogOut.AutoSize = true;
             NutLogOut.ForeColor = SystemColors.HotTrack;
-            NutLogOut.Location = new Point(145, 695);
+            NutLogOut.Location = new Point(174, 695);
             NutLogOut.Name = "NutLogOut";
             NutLogOut.Size = new Size(77, 25);
             NutLogOut.TabIndex = 8;
             NutLogOut.Text = "Log Out";
             NutLogOut.Click += NutLogOut_Click;
+            NutLogOut.MouseEnter += NutLogOut_MouseEnter;
+            NutLogOut.MouseLeave += NutLogOut_MouseLeave;
             // 
             // label2
             // 
@@ -199,6 +204,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Plum;
             ClientSize = new Size(840, 738);
             Controls.Add(PageSizeCombo);
             Controls.Add(PageCombo);
@@ -206,13 +212,13 @@
             Controls.Add(label2);
             Controls.Add(NutLogOut);
             Controls.Add(progressBar1);
-            Controls.Add(button2);
+            Controls.Add(NutThemMonAn);
             Controls.Add(HomNayAn);
             Controls.Add(label1);
             Controls.Add(WelcomeText);
             Controls.Add(tabControl2);
             Name = "TrangChu";
-            Text = "Form1";
+            Text = "Trang Chủ";
             Load += TrangChu_Load;
             tabControl2.ResumeLayout(false);
             AllTabPage.ResumeLayout(false);
@@ -229,7 +235,7 @@
         private Label WelcomeText;
         private Label label1;
         private Button HomNayAn;
-        private Button button2;
+        private Button NutThemMonAn;
         private ProgressBar progressBar1;
         private Label NutLogOut;
         private Label label2;

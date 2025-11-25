@@ -53,6 +53,7 @@
             MatKhauText.Font = new Font("Segoe UI Black", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             MatKhauText.Location = new Point(199, 194);
             MatKhauText.Name = "MatKhauText";
+            MatKhauText.PasswordChar = '*';
             MatKhauText.Size = new Size(379, 39);
             MatKhauText.TabIndex = 1;
             // 
@@ -101,7 +102,7 @@
             NutDangNhap.TabIndex = 6;
             NutDangNhap.Text = "Login";
             NutDangNhap.UseVisualStyleBackColor = true;
-            this.NutDangNhap.Click += new System.EventHandler(this.NutDangNhap_Click);
+            NutDangNhap.Click += NutDangNhap_Click;
             // 
             // DangKyLabel
             // 
@@ -112,7 +113,9 @@
             DangKyLabel.Size = new Size(78, 25);
             DangKyLabel.TabIndex = 7;
             DangKyLabel.Text = "Đăng Ký";
-            DangKyLabel.Click += this.DangKyLabel_Click;
+            DangKyLabel.Click += DangKyLabel_Click;
+            DangKyLabel.MouseEnter += DangKyLabel_MouseEnter;
+            DangKyLabel.MouseLeave += DangKyLabel_MouseLeave;
             // 
             // DangNhap
             // 
@@ -128,7 +131,7 @@
             Controls.Add(MatKhauText);
             Controls.Add(label1);
             Name = "DangNhap";
-            Text = "Dan";
+            Text = "Đăng Nhập";
             ResumeLayout(false);
             PerformLayout();
         }

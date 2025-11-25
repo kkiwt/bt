@@ -107,5 +107,10 @@ namespace Bai7
         {
 
         }
+
+        private void ThemMonAn_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

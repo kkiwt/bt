@@ -174,7 +174,8 @@
             Controls.Add(NutClear);
             Controls.Add(NutThemMon);
             Name = "ThemMonAn";
-            Text = "ThemMonAn";
+            Text = "Thêm Món Ăn";
+            Load += ThemMonAn_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -36,6 +36,7 @@ namespace Bai7
 
         private async void NutDangKy_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             string username = TenTaiKhoanText.Text.Trim();
             string password = MatKhauText.Text.Trim();
             string email = EmailText.Text.Trim();
@@ -132,6 +133,7 @@ namespace Bai7
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
+            Cursor = Cursors.Default;
         }
 
 
