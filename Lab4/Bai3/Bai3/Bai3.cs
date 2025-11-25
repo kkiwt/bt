@@ -30,15 +30,18 @@ namespace Bai3
 
         private async void Load_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             string url = txtUrl.Text;
             if (!string.IsNullOrEmpty(url))
             {
                 webView21.Source = new Uri(url);
             }
+            Cursor = Cursors.Default;
         }
 
         private async void DownFiles_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             string url = txtUrl.Text;
             if (!string.IsNullOrEmpty(url))
             {
@@ -46,12 +49,14 @@ namespace Bai3
                 File.WriteAllText("downloaded.html", html);
                 MessageBox.Show("HTML downloaded successfully!");
             }
+            Cursor = Cursors.Default;
         }
 
 
 
         private async void DownResources_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.Default;
             string url = txtUrl.Text;
             if (!string.IsNullOrEmpty(url))
             {
@@ -88,7 +93,7 @@ namespace Bai3
                         // Nếu tên file rỗng hoặc chứa ký tự đặc biệt, dùng GUID
                         if (string.IsNullOrEmpty(safeFileName) || safeFileName.Contains("?") || safeFileName.Contains("&"))
                         {
-                            safeFileName = Guid.NewGuid().ToString() + ".jpg"; // hoặc .png
+                            safeFileName = Guid.NewGuid().ToString() + ".jpg"; 
                         }
 
                         string fileName = Path.Combine("Images", safeFileName);
@@ -98,7 +103,8 @@ namespace Bai3
 
                 }
 
-                MessageBox.Show("HTML, text, and images downloaded successfully!");
+                MessageBox.Show("HTML, text, and image được tải thành công!");
+                Cursor = Cursors.Default;
             }
         }
 
