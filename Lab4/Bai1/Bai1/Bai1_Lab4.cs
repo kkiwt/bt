@@ -20,15 +20,15 @@ namespace Bai1
 
         private string getHTML(string szUrl)
         {
-            WebRequest request = WebRequest.Create(szUrl); //Tao yeu cau den URL
-            WebResponse response = request.GetResponse(); //Nhan phan hoi
+            WebRequest request = WebRequest.Create(szUrl); 
+            WebResponse response = request.GetResponse(); 
 
-            Stream dataStream = response.GetResponseStream(); //Don nhan Stream
+            Stream dataStream = response.GetResponseStream(); 
             StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd(); //Doc toan bo ndung tu Stream
+            string responseFromServer = reader.ReadToEnd(); 
 
-            response.Close(); //Dong phan hoi
-            return responseFromServer; //tra ve ndung tu sv
+            response.Close(); 
+            return responseFromServer; 
         }
 
         private void Get_Click(object sender, EventArgs e)
