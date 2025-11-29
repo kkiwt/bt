@@ -111,7 +111,7 @@ namespace Bai4
                 if (lineToRemove >= 0)
                 {
                     lines.RemoveAt(lineToRemove);
-                    NoiDungThanhToan.Lines = lines.ToArray(); 
+                    NoiDungThanhToan.Lines = lines.ToArray();
                 }
             }
             else
@@ -145,15 +145,15 @@ namespace Bai4
             foreach (var seat in Data.choosingSeat)
                 Data.BookSeat(seat.Film, seat.Theater, seat.Seat);
 
-            
+
             decimal totalPrice = 0;
             foreach (var seat in Data.choosingSeat)
             {
                 var filmInfo = Data.filmData[seat.Film];
-                totalPrice += Data.CalculatePrice(filmInfo.BasePrice,seat.Seat);
+                totalPrice += Data.CalculatePrice(filmInfo.BasePrice, seat.Seat);
             }
             Data.choosingSeat.Clear();
-            MessageBox.Show($"{TenText.Text} đã đặt vé thành công!\nTổng tiền: {totalPrice}đ","Thông báo");
+            MessageBox.Show($"{TenText.Text} đã đặt vé thành công!\nTổng tiền: {totalPrice}đ", "Thông báo");
 
             ResetSeatColors();
             InitSeatColors(DanhSachPhimCombo.SelectedItem.ToString(), RapCombo.SelectedItem.ToString());

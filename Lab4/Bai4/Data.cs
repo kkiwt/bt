@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Drawing;
-
+    using System.IO;
 namespace Bai4
 {
         internal class Data
@@ -19,25 +19,27 @@ namespace Bai4
             public static Dictionary<string, Dictionary<string, HashSet<string>>> bookedSeats
                 = new Dictionary<string, Dictionary<string, HashSet<string>>>();
 
-        public static async Task LoadFilmData()
+        public static async Task<Dictionary<string, FilmInfo>> LoadFilmData()
         {
+            filmData.Clear();
+
             var url = "https://betacinemas.vn/phim.htm";
 
             using (HttpClient client = new HttpClient())
             {
-                // Thêm User-Agent để tránh bị chặn
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+                client.DefaultRequestHeaders.UserAgent.ParseAdd(
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+                );
 
                 var html = await client.GetStringAsync(url);
                 var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(html);
 
                 var movieCards = doc.DocumentNode.SelectNodes("//div[contains(@class,'film-info')]");
-                if (movieCards == null) return;
+                if (movieCards == null) return filmData;
 
                 foreach (var card in movieCards)
                 {
-                    // 1. Tên phim và URL chi tiết
                     var titleNode = card.SelectSingleNode(".//h3/a");
                     if (titleNode == null) continue;
 
@@ -46,26 +48,18 @@ namespace Bai4
                     string detailUrl = new Uri(new Uri(url), detailHref).ToString();
 
                     string posterUrl = "";
-                    var parentRowNode = card.ParentNode?.ParentNode;
+                    var row = card.ParentNode?.ParentNode;
 
-                    if (parentRowNode != null)
+                    if (row != null)
                     {
-                        var imgNode = parentRowNode.SelectSingleNode(".//img[contains(@class,'border-radius-20')]");
-
-                        if (imgNode != null)
-                        {
-                            posterUrl = imgNode.GetAttributeValue("src", "").Trim();
-                        }
+                        var imgNode = row.SelectSingleNode(".//img[contains(@class,'border-radius-20')]");
+                        if (imgNode != null) posterUrl = imgNode.GetAttributeValue("src", "").Trim();
                     }
 
                     if (!string.IsNullOrEmpty(posterUrl))
                     {
                         if (Uri.TryCreate(new Uri(url), posterUrl, out Uri abs))
                             posterUrl = abs.ToString();
-                    }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine($"Không tìm thấy Poster URL cho phim: {filmName}");
                     }
 
                     if (!filmData.ContainsKey(filmName))
@@ -81,7 +75,16 @@ namespace Bai4
                     }
                 }
             }
+
+            return filmData;
         }
+        public static async Task SaveFilmJson(Dictionary<string, FilmInfo> data)
+        {
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText("films.json", json);
+
+        }
+
 
 
         public static Dictionary<string, FilmInfo> GetData()

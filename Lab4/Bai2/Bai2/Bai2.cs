@@ -22,11 +22,7 @@ namespace Bai2
         {
             Cursor = Cursors.WaitCursor;
             string url = txtURL.Text.Trim();
-
             string FilePath = txtSaveFile.Text.Trim();
-
-
-
             if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(FilePath))
 
             {
@@ -36,18 +32,11 @@ namespace Bai2
                 return;
 
             }
-
-
-
             if (!url.StartsWith("http://", StringComparison.OrdinalIgnoreCase) && !url.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
 
             {
-
                 url = "http://" + url;
-
             }
-
-
 
             try
 
@@ -56,19 +45,11 @@ namespace Bai2
                 using (WebClient client = new WebClient())
 
                 {
-
                     client.Encoding = System.Text.Encoding.UTF8;
-
-
-
                     client.DownloadFile(url, FilePath);
-
                 }
 
-
-
                 string hmtlcontent = File.ReadAllText(FilePath);
-
                 rtbShowContent.Text = hmtlcontent;
 
             }
@@ -76,15 +57,11 @@ namespace Bai2
 
 
             catch (WebException ex)
-
             {
 
                 MessageBox.Show($"Lỗi Web: {ex.Message}\nvui lòng kiểm tra lại URL.", "Lỗi Tải Xuống", MessageBoxButtons.OK);
-
             }
-
             catch (IOException ex)
-
             {
 
                 MessageBox.Show($"Lỗi File: {ex.Message}", "Lỗi Ghi File", MessageBoxButtons.OK);
@@ -111,12 +88,8 @@ namespace Bai2
 
             saveFileDialog.RestoreDirectory = true;
 
-            saveFileDialog.FileName = "Download.HTML";
-
-
-
+            saveFileDialog.FileName = "Download.HTML"; // Mac Dinh
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
-
             {
 
                 txtSaveFile.Text = saveFileDialog.FileName;

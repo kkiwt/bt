@@ -80,6 +80,7 @@
             txtSaveFile.Location = new Point(195, 109);
             txtSaveFile.Margin = new Padding(4);
             txtSaveFile.Name = "txtSaveFile";
+            txtSaveFile.ReadOnly = true;
             txtSaveFile.Size = new Size(639, 35);
             txtSaveFile.TabIndex = 3;
             // 

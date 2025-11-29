@@ -31,11 +31,31 @@ namespace Bai3
         private async void Load_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            string url = txtUrl.Text;
-            if (!string.IsNullOrEmpty(url))
+            string url = txtUrl.Text.Trim();
+            if (string.IsNullOrWhiteSpace(url))
             {
-                webView21.Source = new Uri(url);
+                Cursor = Cursors.Default;
+                MessageBox.Show("URL không được để trống.");
+                return;
             }
+            if (!url.Contains("://"))
+            {
+                url = "https://" + url;
+            }
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult))
+            {
+                Cursor = Cursors.Default;
+                MessageBox.Show("URL không hợp lệ.");
+                return;
+            }
+            if (uriResult.HostNameType == UriHostNameType.Unknown || !uriResult.Host.Contains("."))
+            {
+                Cursor = Cursors.Default;
+                MessageBox.Show("URL không hợp lệ.");
+                return;
+            }
+            webView21.Source = uriResult;
             Cursor = Cursors.Default;
         }
 

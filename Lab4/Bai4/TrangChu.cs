@@ -35,6 +35,7 @@ namespace Bai4
 
             await Data.LoadFilmData();
             await DisplayFilmsDynamic(Data.filmData);
+            await Data.SaveFilmJson(Data.filmData);
         }
 
         private async Task DisplayFilmsDynamic(Dictionary<string, FilmInfo> filmData)
@@ -55,7 +56,7 @@ namespace Bai4
                         Width = 180,
                         Height = 310,
                         BorderStyle = BorderStyle.FixedSingle,
-                        Margin = new Padding(50,50,10,10),
+                        Margin = new Padding(50, 50, 10, 10),
                         BackColor = Color.WhiteSmoke
                     };
 
@@ -69,7 +70,7 @@ namespace Bai4
 
                     if (!string.IsNullOrEmpty(film.PosterUrl))
                     {
-                        
+
                         try
                         {
                             var bytes = await client.GetByteArrayAsync(film.PosterUrl);

@@ -16,7 +16,8 @@ namespace Bai_5
         }
 
         private async void btnLogin_Click(object sender, EventArgs e)
-        {
+        { 
+            Cursor = Cursors.WaitCursor;
             string user = textBoxUsername.Text.Trim();
             string pass = textBoxPassword.Text.Trim();
 
@@ -42,7 +43,7 @@ namespace Bai_5
                 var obj = JObject.Parse(json);
 
                 rtbResult.Clear();
-
+                Cursor = Cursors.Default;
                 if (!response.IsSuccessStatusCode)
                 {
                     rtbResult.Text = "Đăng nhập thất bại!\n"
