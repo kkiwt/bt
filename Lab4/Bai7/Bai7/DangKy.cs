@@ -103,6 +103,7 @@ namespace Bai7
                 language = language,
                 phone = phone
             };
+            Cursor = Cursors.Default;
 
             try
             {
@@ -133,7 +134,7 @@ namespace Bai7
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
-            Cursor = Cursors.Default;
+
         }
 
 
