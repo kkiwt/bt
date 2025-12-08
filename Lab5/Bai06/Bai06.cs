@@ -37,7 +37,13 @@ namespace Bai06
             client.Authenticate(username, password); 
             IMailFolder inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadOnly);
-            for (int i = 0; i < 35; i++) 
+
+            int count = inbox.Count;
+            int max = 60;
+            int start = count - max;
+            if (start < 0)
+                start = 0;
+            for (int i = count - 1; i >= start; i--)
             {
                 MimeMessage message = inbox.GetMessage(i);
                 ListViewItem mail = new ListViewItem();
@@ -81,7 +87,13 @@ namespace Bai06
             lv_mails.Items.Clear();
             IMailFolder inbox = client.Inbox;
             inbox.Open(FolderAccess.ReadOnly);
-            for (int i = 0; i < 40; i++) //inbox.Count
+
+            int count = inbox.Count;
+            int max = 60;
+            int start = count - max;
+            if (start < 0)
+                start = 0;
+            for (int i = count - 1; i >= start; i--)
             {
                 MimeMessage message = inbox.GetMessage(i);
                 ListViewItem mail = new ListViewItem();
