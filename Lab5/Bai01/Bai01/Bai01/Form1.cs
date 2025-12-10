@@ -17,11 +17,6 @@ namespace Bai01
         public Form1()
         {
             InitializeComponent();
-            txtFrom.Text = "nguyenhuuchien2006@gmail.com";
-            txtPassword.Text = "njyw qgcl mshg uchi";
-            txtTo.Text = "24520218@gm.uit.edu.vn";
-            txtSubject.Text = "test";
-            rtbBody.Text = "Test gửi email bằng SMTP trong C#";
         }
 
         private async void btnSend_Click(object sender, EventArgs e)
