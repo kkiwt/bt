@@ -30,7 +30,7 @@
         {
             this.lb_From = new System.Windows.Forms.Label();
             this.txt_From = new System.Windows.Forms.TextBox();
-            this.Check_HTML = new System.Windows.Forms.CheckBox();
+            this.CheckHTML = new System.Windows.Forms.CheckBox();
             this.txt_Mail_Content = new System.Windows.Forms.RichTextBox();
             this.btn_Browse = new System.Windows.Forms.Button();
             this.txt_Subject = new System.Windows.Forms.TextBox();
@@ -66,17 +66,17 @@
             this.txt_From.Size = new System.Drawing.Size(687, 30);
             this.txt_From.TabIndex = 1;
             // 
-            // Check_HTML
+            // CheckHTML
             // 
-            this.Check_HTML.AutoSize = true;
-            this.Check_HTML.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Check_HTML.Location = new System.Drawing.Point(121, 186);
-            this.Check_HTML.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Check_HTML.Name = "Check_HTML";
-            this.Check_HTML.Size = new System.Drawing.Size(85, 27);
-            this.Check_HTML.TabIndex = 2;
-            this.Check_HTML.Text = "HTML";
-            this.Check_HTML.UseVisualStyleBackColor = true;
+            this.CheckHTML.AutoSize = true;
+            this.CheckHTML.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckHTML.Location = new System.Drawing.Point(121, 186);
+            this.CheckHTML.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CheckHTML.Name = "CheckHTML";
+            this.CheckHTML.Size = new System.Drawing.Size(85, 27);
+            this.CheckHTML.TabIndex = 2;
+            this.CheckHTML.Text = "HTML";
+            this.CheckHTML.UseVisualStyleBackColor = true;
             // 
             // txt_Mail_Content
             // 
@@ -222,7 +222,7 @@
             this.Controls.Add(this.lb_Subject);
             this.Controls.Add(this.btn_Browse);
             this.Controls.Add(this.txt_Mail_Content);
-            this.Controls.Add(this.Check_HTML);
+            this.Controls.Add(this.CheckHTML);
             this.Controls.Add(this.txt_From);
             this.Controls.Add(this.lb_From);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -238,7 +238,7 @@
 
         private System.Windows.Forms.Label lb_From;
         private System.Windows.Forms.TextBox txt_From;
-        private System.Windows.Forms.CheckBox Check_HTML;
+        private System.Windows.Forms.CheckBox CheckHTML;
         private System.Windows.Forms.RichTextBox txt_Mail_Content;
         private System.Windows.Forms.Button btn_Browse;
         private System.Windows.Forms.TextBox txt_Subject;

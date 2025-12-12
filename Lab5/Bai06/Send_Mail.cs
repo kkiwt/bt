@@ -40,7 +40,7 @@ namespace Bai06
             message.From = new MailAddress(txt_From.Text, txt_Name.Text);
             message.To.Add(txt_To.Text);
             message.Subject = txt_Subject.Text;
-            if (Check_HTML.Checked)
+            if (CheckHTML.Checked)
             {
                 message.IsBodyHtml = true;
             }

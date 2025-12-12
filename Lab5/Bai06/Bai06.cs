@@ -113,6 +113,5 @@ namespace Bai06
             item.Tag = lv_mails.SelectedItems[0].Tag;
             item.ShowDialog();
         }
-
     }
 }
