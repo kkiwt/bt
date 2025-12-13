@@ -107,8 +107,8 @@ namespace Bai4
                     };
                     btnUrl.Click += (s, e) =>
                     {
-                        if (!string.IsNullOrEmpty(film.DetailUrl))
-                            Process.Start(new ProcessStartInfo { FileName = film.DetailUrl, UseShellExecute = true });
+                        ChiTietPhim formChiTietPhim = new ChiTietPhim(film.DetailUrl);
+                        formChiTietPhim.ShowDialog();
                     };
 
                     card.Click += (s, e) => ShowFilmDetail(film);
