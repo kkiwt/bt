@@ -187,7 +187,7 @@ namespace Bai4
 
             string filmName = DanhSachPhimCombo.SelectedItem.ToString();
             var filmInfo = Data.filmData[filmName];
-            
+
             SendConfirmEmail(
                 textBoxEmail.Text,
                 TenText.Text,
@@ -219,39 +219,35 @@ namespace Bai4
             string film,
             string seats,
             Data.FilmInfo filmInfo)
-            {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("24520662@gm.uit.edu.vn", "Rạp phim");
-                mail.To.Add(toEmail);
-                mail.Subject = "XÁC NHẬN ĐẶT VÉ XEM PHIM";
-                mail.IsBodyHtml = true;
+        {
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("24520662@gm.uit.edu.vn", "Rạp phim");
+            mail.To.Add(toEmail);
+            mail.Subject = "XÁC NHẬN ĐẶT VÉ XEM PHIM";
+            mail.IsBodyHtml = true;
 
-                string html = $@"
+            string html = $@"
                 <html>
-                    <body style='
-                        background-image:url(cid:poster);
-                        background-size:cover;
-                        padding:30px;
-                        color:white;
-                        font-family:Arial;
-                    '>
-                    <h2>XÁC NHẬN ĐẶT VÉ </h2>
+                  <body style='padding:30px; color:black; font-family:Arial;'>
+                    <h2>XÁC NHẬN ĐẶT VÉ</h2>
                     <p><b>Khách hàng:</b> {customerName}</p>
                     <p><b>Phim:</b> {film}</p>
                     <p><b>Ghế:</b> {seats}</p>
                     <hr/>
                     <h3>{filmInfo.Slogan}</h3>
-                    </body>
+                    <img src='cid:poster' style='width:300px; height:auto;'/>
+                  </body>
                 </html>";
 
-            AlternateView view = AlternateView.CreateAlternateViewFromString(
-                html, Encoding.UTF8, "text/html");
+            AlternateView view = AlternateView.CreateAlternateViewFromString(html, Encoding.UTF8, "text/html");
 
             LinkedResource poster = new LinkedResource(filmInfo.LocalPosterPath);
             poster.ContentId = "poster";
+            poster.ContentType.MediaType = "image/jpeg";
             view.LinkedResources.Add(poster);
 
             mail.AlternateViews.Add(view);
+
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials = new NetworkCredential(
