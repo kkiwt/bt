@@ -3,7 +3,7 @@ Lưu Ý Về Bài Lab 2: Cần giải nén file rar để đọc và ghi file
 
 - Bài Lab 1 và 2 được thực hiện bởi Nguyễn Tuấn Kiệt - 24520907
 
-- Bài Lab 3 được thực hiện bởi nhóm 4 lớp Thực Hành:
+- Bài Lab 3, Lab 4, Lab 5 được thực hiện bởi nhóm 4 lớp Thực Hành:
 
 Các Thành Viên của nhóm 4 lớp Thực Hành:
 
