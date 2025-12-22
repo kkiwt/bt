@@ -14,7 +14,7 @@ namespace Client
         private StreamReader reader;
         private StreamWriter writer;
         private const int PORT = 1111;
-        private const string SERVER_IP = "172.20.10.4";
+        private const string SERVER_IP = "127.0.0.1";
         public bool IsConnected { get; private set; } = false;
 
         public bool Connect()

@@ -34,10 +34,10 @@
             // 
             // NutClient
             // 
-            NutClient.Location = new Point(98, 71);
-            NutClient.Margin = new Padding(2, 2, 2, 2);
+            NutClient.Location = new Point(122, 89);
+            NutClient.Margin = new Padding(2);
             NutClient.Name = "NutClient";
-            NutClient.Size = new Size(153, 35);
+            NutClient.Size = new Size(191, 44);
             NutClient.TabIndex = 0;
             NutClient.Text = "Client";
             NutClient.UseVisualStyleBackColor = true;
@@ -45,10 +45,10 @@
             // 
             // Server
             // 
-            Server.Location = new Point(371, 74);
-            Server.Margin = new Padding(2, 2, 2, 2);
+            Server.Location = new Point(464, 92);
+            Server.Margin = new Padding(2);
             Server.Name = "Server";
-            Server.Size = new Size(171, 33);
+            Server.Size = new Size(214, 41);
             Server.TabIndex = 1;
             Server.Text = "Server";
             Server.UseVisualStyleBackColor = true;
@@ -56,14 +56,14 @@
             // 
             // Dashboard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 170);
+            ClientSize = new Size(800, 212);
             Controls.Add(Server);
             Controls.Add(NutClient);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "Dashboard";
-            Text = "Form1";
+            Text = "Dashboard";
             ResumeLayout(false);
         }
 

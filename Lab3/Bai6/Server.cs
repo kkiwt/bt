@@ -42,7 +42,7 @@ namespace ChatServer
         public void mainServer_StatusChanged(object sender, StatusChangedEventArgs e)
         {
             // Kiểm tra xem có phải gửi file không
-            // Cú pháp: nếu EventMessage bắt đầu bằng "FILECONTENT|from|filename|filetype|base64"
+
             if (e.EventMessage.StartsWith("FILECONTENT|"))
             {
                 string[] parts = e.EventMessage.Split(new char[] { '|' }, 5);

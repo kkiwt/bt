@@ -9,7 +9,7 @@ namespace Bai4
     public partial class Client : Form
     {
         private Dictionary<string, FilmInfo> filmData = new(); // Dữ liệu phim từ Server
-        private HashSet<string> bookedSeat = new();            // Danh sách ghế đã đặt (đồng bộ từ Server)
+        private HashSet<string> bookedSeat = new();            // Danh sách ghế đã đặt 
         private List<(string Film, string Theater, string Seat)> choosingSeat = new();
         private NetworkClient netClient = new();
         private System.Windows.Forms.Timer syncTimer;
@@ -17,9 +17,9 @@ namespace Bai4
         public Client()
         {
             InitializeComponent();
-            richTextBox1.ReadOnly = true;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            NoiDungPhimDaDat.ReadOnly = true;
+            ChonPhim.DropDownStyle = ComboBoxStyle.DropDownList;
+            ChonRap.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Kết nối tới Server khi khởi động
             try
@@ -43,11 +43,11 @@ namespace Bai4
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 1; j <= 5; j++)
-                    checkedListBox1.Items.Add((char)('A' + i) + j.ToString());
+                    ChonGhe.Items.Add((char)('A' + i) + j.ToString());
             }
 
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            ChonPhim.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            ChonRap.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             Them.Click += Them_Click;
             Xoa.Click += Xoa_Click;
             ThanhToan.Click += ThanhToan_Click;
@@ -55,18 +55,18 @@ namespace Bai4
             NutThongKe.Click += NutThongKe_Click;
         }
 
-        // 🔹 Lấy danh sách phim từ Server
+        // Lấy danh sách phim từ Server
         private void LoadFilmDataFromServer()
         {
             filmData = netClient.SendRequest<Dictionary<string, FilmInfo>>(new { action = "get_films" });
-            comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(filmData.Keys.ToArray());
+            ChonPhim.Items.Clear();
+            ChonPhim.Items.AddRange(filmData.Keys.ToArray());
 
-            if (comboBox1.Items.Count > 0)
-                comboBox1.SelectedIndex = 0;
+            if (ChonPhim.Items.Count > 0)
+                ChonPhim.SelectedIndex = 0;
         }
 
-        // 🔹 Lấy danh sách ghế đã đặt từ Server
+        // Lấy danh sách ghế đã đặt từ Server
         private void LoadBookedSeatsFromServer()
         {
             bookedSeat = netClient.SendRequest<HashSet<string>>(new { action = "get_booked" });
@@ -93,16 +93,16 @@ namespace Bai4
         // Khi chọn phim → nạp danh sách rạp tương ứng
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox2.Items.Clear();
+            ChonRap.Items.Clear();
             resetCheckedListBox();
 
-            if (comboBox1.SelectedIndex == -1) return;
-            string selectedFilm = comboBox1.SelectedItem.ToString();
+            if (ChonPhim.SelectedIndex == -1) return;
+            string selectedFilm = ChonPhim.SelectedItem.ToString();
 
             if (filmData.ContainsKey(selectedFilm))
             {
-                comboBox2.Items.AddRange(filmData[selectedFilm].Theaters.ToArray());
-                comboBox2.SelectedIndex = 0;
+                ChonRap.Items.AddRange(filmData[selectedFilm].Theaters.ToArray());
+                ChonRap.SelectedIndex = 0;
             }
         }
 
@@ -110,22 +110,22 @@ namespace Bai4
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             resetCheckedListBox();
-            LoadBookedSeatsFromServer(); // luôn đồng bộ danh sách mới nhất
+            LoadBookedSeatsFromServer(); 
 
-            if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1) return;
-            string film = comboBox1.SelectedItem.ToString();
-            string theater = comboBox2.SelectedItem.ToString();
+            if (ChonPhim.SelectedIndex == -1 || ChonRap.SelectedIndex == -1) return;
+            string film = ChonPhim.SelectedItem.ToString();
+            string theater = ChonRap.SelectedItem.ToString();
 
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            for (int i = 0; i < ChonGhe.Items.Count; i++)
             {
-                string seat = checkedListBox1.Items[i].ToString();
+                string seat = ChonGhe.Items[i].ToString();
                 string key = $"{film}_{theater}_{seat}";
 
                 if (bookedSeat.Contains(key))
                 {
-                    checkedListBox1.SetItemChecked(i, true);
-                    checkedListBox1.SetItemCheckState(i, CheckState.Indeterminate);
-                    checkedListBox1.SetItemEnabled(i, false); // custom disable nếu bạn có extension
+                    ChonGhe.SetItemChecked(i, true);
+                    ChonGhe.SetItemCheckState(i, CheckState.Indeterminate);
+                    ChonGhe.SetItemEnabled(i, false); // custom disable nếu có extension
                 }
             }
         }
@@ -133,17 +133,17 @@ namespace Bai4
         // Nút "Thêm"
         private void Them_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == -1 || comboBox2.SelectedIndex == -1)
+            if (ChonPhim.SelectedIndex == -1 || ChonRap.SelectedIndex == -1)
             {
                 MessageBox.Show("Vui lòng chọn phim và rạp!", "Thông báo");
                 return;
             }
 
-            string film = comboBox1.SelectedItem.ToString();
-            string theater = comboBox2.SelectedItem.ToString();
+            string film = ChonPhim.SelectedItem.ToString();
+            string theater = ChonRap.SelectedItem.ToString();
             decimal basePrice = filmData[film].BasePrice;
 
-            var selectedSeats = checkedListBox1.CheckedItems.Cast<string>().ToList();
+            var selectedSeats = ChonGhe.CheckedItems.Cast<string>().ToList();
             if (selectedSeats.Count == 0)
             {
                 MessageBox.Show("Hãy chọn ít nhất 1 ghế!");
@@ -158,7 +158,7 @@ namespace Bai4
                 if (!choosingSeat.Any(x => x.Film == film && x.Theater == theater && x.Seat == seat))
                 {
                     choosingSeat.Add((film, theater, seat));
-                    richTextBox1.AppendText($"{film} | Rạp {theater} | Ghế {seat} | {GetTypeSeat(seat)} | {CalculatePrice(basePrice, seat):#,##0}₫\n");
+                    NoiDungPhimDaDat.AppendText($"{film} | Rạp {theater} | Ghế {seat} | {GetTypeSeat(seat)} | {CalculatePrice(basePrice, seat):#,##0}₫\n");
                 }
             }
         }
@@ -168,7 +168,7 @@ namespace Bai4
             if (MessageBox.Show("Xóa toàn bộ lựa chọn?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 choosingSeat.Clear();
-                richTextBox1.Clear();
+                NoiDungPhimDaDat.Clear();
                 resetCheckedListBox();
             }
         }
@@ -209,7 +209,7 @@ namespace Bai4
                     MessageBox.Show(res["msg"], "Thông báo");
             }
 
-            richTextBox1.AppendText($"\n--- Thanh toán thành công ---\nKhách: {name}\nTổng tiền: {total:#,##0}₫\n----------------------------\n\n");
+            NoiDungPhimDaDat.AppendText($"\n--- Thanh toán thành công ---\nKhách: {name}\nTổng tiền: {total:#,##0}₫\n----------------------------\n\n");
             choosingSeat.Clear();
 
             // Làm mới danh sách ghế đã đặt
@@ -220,7 +220,7 @@ namespace Bai4
         private void NutDatTiep_Click(object sender, EventArgs e)
         {
             choosingSeat.Clear();
-            richTextBox1.Clear();
+            NoiDungPhimDaDat.Clear();
             LoadBookedSeatsFromServer();
             resetCheckedListBox();
         }
@@ -232,10 +232,10 @@ namespace Bai4
 
         private void resetCheckedListBox()
         {
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            for (int i = 0; i < ChonGhe.Items.Count; i++)
             {
-                checkedListBox1.SetItemChecked(i, false);
-                checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                ChonGhe.SetItemChecked(i, false);
+                ChonGhe.SetItemCheckState(i, CheckState.Unchecked);
             }
         }
 
@@ -259,34 +259,33 @@ namespace Bai4
                 LoadBookedSeatsFromServer();
 
                 // Nếu đang chọn phim & rạp, cập nhật lại trạng thái ghế hiển thị
-                if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+                if (ChonPhim.SelectedIndex != -1 && ChonRap.SelectedIndex != -1)
                 {
-                    string film = comboBox1.SelectedItem.ToString();
-                    string theater = comboBox2.SelectedItem.ToString();
+                    string film = ChonPhim.SelectedItem.ToString();
+                    string theater = ChonRap.SelectedItem.ToString();
 
-                    for (int i = 0; i < checkedListBox1.Items.Count; i++)
+                    for (int i = 0; i < ChonGhe.Items.Count; i++)
                     {
-                        string seat = checkedListBox1.Items[i].ToString();
+                        string seat = ChonGhe.Items[i].ToString();
                         string key = $"{film}_{theater}_{seat}";
 
                         if (bookedSeat.Contains(key))
                         {
-                            checkedListBox1.SetItemChecked(i, true);
-                            checkedListBox1.SetItemCheckState(i, CheckState.Indeterminate);
-                            checkedListBox1.SetItemEnabled(i, false);
+                            ChonGhe.SetItemChecked(i, true);
+                            ChonGhe.SetItemCheckState(i, CheckState.Indeterminate);
+                            ChonGhe.SetItemEnabled(i, false);
                         }
                         else
                         {
-                            checkedListBox1.SetItemEnabled(i, true);
-                            checkedListBox1.SetItemChecked(i, false);
-                            checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                            ChonGhe.SetItemEnabled(i, true);
+                            ChonGhe.SetItemChecked(i, false);
+                            ChonGhe.SetItemCheckState(i, CheckState.Unchecked);
                         }
                     }
                 }
             }
             catch
             {
-                // Nếu mất kết nối tạm thời, có thể bỏ qua lỗi nhẹ
             }
         }
     }

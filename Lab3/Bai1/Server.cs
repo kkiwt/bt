@@ -93,8 +93,7 @@ namespace Bai1
                 }));
             }
             else
-            {
-                // Nếu đang ở đúng luồng giao diện
+            
                 ListListen.Items.Add(new ListViewItem(mess));
             }
         }

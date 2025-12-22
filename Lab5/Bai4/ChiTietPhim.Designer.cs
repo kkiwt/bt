@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
-            this.button1 = new System.Windows.Forms.Button();
+            this.NutQuayLai = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,25 +44,25 @@
             this.webView21.TabIndex = 0;
             this.webView21.ZoomFactor = 1D;
             // 
-            // button1
+            // NutQuayLai
             // 
-            this.button1.Location = new System.Drawing.Point(1177, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 34);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Quay lại";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.NutQuayLai.Location = new System.Drawing.Point(1177, 12);
+            this.NutQuayLai.Name = "NutQuayLai";
+            this.NutQuayLai.Size = new System.Drawing.Size(116, 34);
+            this.NutQuayLai.TabIndex = 1;
+            this.NutQuayLai.Text = "Quay lại";
+            this.NutQuayLai.UseVisualStyleBackColor = true;
+            this.NutQuayLai.Click += new System.EventHandler(this.QuayLai_Click);
             // 
             // ChiTietPhim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1305, 731);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.NutQuayLai);
             this.Controls.Add(this.webView21);
             this.Name = "ChiTietPhim";
-            this.Text = "ChiTietPhim";
+            this.Text = "Chi Tiết Phim";
             this.Load += new System.EventHandler(this.ChiTietPhim_Load);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.ResumeLayout(false);
@@ -72,6 +72,6 @@
         #endregion
 
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button NutQuayLai;
     }
 }

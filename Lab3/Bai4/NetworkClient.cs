@@ -9,7 +9,7 @@ namespace Bai4
         private TcpClient client;
         private NetworkStream ns;
 
-        public void Connect(string ip = "172.20.10.4", int port = 8080) // ket noi den server 
+        public void Connect(string ip = "127.0.0.1", int port = 8080) // ket noi den server 
         {
             client = new TcpClient(ip, port);
             ns = client.GetStream();

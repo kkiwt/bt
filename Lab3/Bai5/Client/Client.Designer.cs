@@ -259,7 +259,7 @@
             this.Controls.Add(this.lbTenMonAn);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Client";
-            this.Text = "Form1";
+            this.Text = "Client";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMonAn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBThemHinhAnh)).EndInit();

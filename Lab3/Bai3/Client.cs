@@ -55,7 +55,6 @@ namespace Bai3
                     // Gửi tin nhắn
                     await stream.WriteAsync(sendBytes, 0, sendBytes.Length);
 
-                    // Tuỳ chọn: đóng kết nối sau khi gửi
                     stream.Close();
                     tcpClient.Close();
                 }

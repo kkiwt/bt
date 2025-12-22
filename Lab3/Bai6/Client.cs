@@ -387,8 +387,6 @@ namespace ChatClient
                 }
             }
         }
-
-        // ===== Các hàm tiện ích =====
         private void AddChatMessage(string message)
         {
             Label lbl = new Label();
